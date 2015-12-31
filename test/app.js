@@ -6,6 +6,7 @@ var helpers = require("yeoman-generator").test;
 
 describe("generator-wrr:app", function () {
   before(function (done) {
+    this.timeout(10000);
     helpers.run(path.join(__dirname, "../generators/app"))
       .withOptions({ someOption: true })
       .withPrompts({ someAnswer: true })
