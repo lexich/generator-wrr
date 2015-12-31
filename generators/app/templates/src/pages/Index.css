@@ -1,0 +1,8 @@
+.IndexPage {
+  width: 100%;
+  height: 100%;
+}
+
+.IndexPage__username {
+  color: var(--color-grey);
+}
