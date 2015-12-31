@@ -6,7 +6,7 @@
   "author": {
     "name": "Efremov Alexey",
     "email": "lexich121@gmail.com",
-    "url": ""
+    "url": "lexich.ru"
   },
   "files": [
     "generators"
@@ -25,10 +25,8 @@
     "eslint-config-airbnb": "^2.1.1",
     "eslint-plugin-react": "^3.13.1",
     "gulp": "^3.6.0",
-    "gulp-coveralls": "^0.1.0",
     "gulp-eslint": "^1.0.0",
     "gulp-exclude-gitignore": "^1.0.0",
-    "gulp-istanbul": "^0.9.0",
     "gulp-mocha": "^2.0.0",
     "gulp-nsp": "^2.1.0",
     "gulp-plumber": "^1.0.0",

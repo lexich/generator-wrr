@@ -1,4 +1,4 @@
-# generator-wrr [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-wrr [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] 
 > Webpack React Redux generator
 
 ## Installation
@@ -31,5 +31,3 @@ MIT © [Efremov Alexey]()
 [travis-url]: https://travis-ci.org/lexich/generator-wrr
 [daviddm-image]: https://david-dm.org/lexich/generator-wrr.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/lexich/generator-wrr
-[coveralls-image]: https://coveralls.io/repos/lexich/generator-wrr/badge.svg
-[coveralls-url]: https://coveralls.io/r/lexich/generator-wrr
