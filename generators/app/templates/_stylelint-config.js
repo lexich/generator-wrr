@@ -8,4 +8,4 @@ module.exports = {
     "at-rule-empty-line-before": null,
     "rule-properties-order": null
   }
-}
+};

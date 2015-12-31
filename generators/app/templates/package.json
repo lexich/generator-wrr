@@ -1,10 +1,10 @@
 {
-  "name": "react-patient-messenger-client",
+  "name": "<%= props.projectname %>",
   "description": "",
   "version": "0.0.0",
-  "repository": "http://github.com/lexich/react-patient-messenger-client",
+  "repository": "http://github.com/<%= props.githubuser %>/<%= props.projectname %>",
   "main": "src/client.jsx",
-  "license": "",
+  "license": "MIT",
   "scripts": {
     "build": "rm -rf ./dist && mkdir dist && cp ./public/* ./dist/ && NODE_ENV=production node_modules/.bin/webpack --process && node scripts/template.js",
     "start": "npm run server",

@@ -1,21 +1,4 @@
-### About react-patient-messenger-client
-
-# System Requirements
-> node --version 
-> v4.2.2
-> npm --version
-> 3.4.0
-
-
-## To install on your computer, type in command-line: ##
-  
-```
-git clone https://bitbucket.org/onekit/react-patient-messenger-client.git
-cd react-patient-messenger-client
-npm install npm@3.4.0 -g
-npm install
-# run developer server
-npm run server 
-# run production build
-npm run build  
-```
+### About <%= props.projectname %>
+[![Build Status](https://travis-ci.org/<%= props.githubuser %>/<%= props.projectname %>.svg)](https://travis-ci.org/<%= props.githubuser %>/<%= props.projectname %>)
+[![NPM version](https://badge.fury.io/js/<%= props.projectname %>.svg)](http://badge.fury.io/js/<%= props.projectname %>)
+[![Coverage Status](https://coveralls.io/repos/<%= props.githubuser %>/<%= props.projectname %>/badge.png?branch=master)](https://coveralls.io/r/<%= props.githubuser %>/<%= props.projectname %>?branch=master)
