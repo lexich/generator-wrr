@@ -7,7 +7,6 @@ const libpath = require("path");
 
 module.exports = yeoman.generators.Base.extend({
   prompting(componentName) {
-
     const done = this.async();
 
     if (!componentName) {
@@ -17,6 +16,7 @@ module.exports = yeoman.generators.Base.extend({
       // this.log(error);
       return done(error);
     }
+
     // Have Yeoman greet the user.
     this.log(yosay(
       "Welcome to the incredible " + chalk.red("generator-wrr") + " generator!"
@@ -34,12 +34,10 @@ module.exports = yeoman.generators.Base.extend({
       ],
       default: "components"
     }];
-    const _typeComponent =
-      isComponent ? "components" :
+    const _typeComponent = isComponent ? "components" :
       isPage ? "pages" : "";
 
     this.prompt(prompts, function (props) {
-
       this.props = props;
       const typeComponent = _typeComponent || props.typeComponent;
       this.props.typeComponent = typeComponent;

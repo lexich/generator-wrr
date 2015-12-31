@@ -1,8 +1,8 @@
 "use strict";
 /* global describe, it, before */
-var path = require("path");
-var assert = require("yeoman-assert");
-var helpers = require("yeoman-generator").test;
+const path = require("path");
+const assert = require("yeoman-assert");
+const helpers = require("yeoman-generator").test;
 
 describe("generator-wrr:app", function () {
   before(function (done) {
@@ -28,7 +28,6 @@ describe("generator-wrr:app", function () {
       "package.json",
       "template.html",
       "webpack.config.js",
-
       "css-external/cssvars.json",
       "css-external/mixins/ellipsis.css",
       "public/robots.txt",

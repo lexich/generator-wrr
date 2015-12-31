@@ -1,7 +1,8 @@
 "use strict";
-var path = require("path");
-var assert = require("yeoman-assert");
-var helpers = require("yeoman-generator").test;
+/* global describe, it, before */
+const path = require("path");
+const assert = require("yeoman-assert");
+const helpers = require("yeoman-generator").test;
 
 describe("generator-wrr:component", function () {
   describe("creates component with args", function() {
@@ -26,7 +27,7 @@ describe("generator-wrr:component", function () {
         .withArguments(["test-component"])
         .withOptions({ page: true })
         .on("end", done);
-    })
+    });
     it("check", function () {
       this.timeout(10000);
       assert.file([
