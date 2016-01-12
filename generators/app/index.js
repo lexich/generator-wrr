@@ -11,7 +11,7 @@ module.exports = yeoman.Base.extend({
 
     // Have Yeoman greet the user.
     this.log(yosay(
-      "Welcome to the terrific " + chalk.red("generator-wrr") + " generator!"
+      "Welcome to the Webpack-React-Redux " + chalk.red("generator-wrr") + " generator!"
     ));
 
     const prompts = [];
