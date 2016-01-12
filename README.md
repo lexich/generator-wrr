@@ -13,7 +13,10 @@ npm install -g generator-wrr
 Then generate your new project:
 
 ```bash
-yo wrr
+yo wrr            # generate full project with webpack + React Redux React-Router Redux-api 
+                  # depends from wrr:pure generator
+yo wrr:pure       # generate pure javascript project
+yo wrr:component  # generate react component for full project
 ```
 
 ## Getting To Know Yeoman
