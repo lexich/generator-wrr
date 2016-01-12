@@ -10,7 +10,7 @@ class Index extends React.Component {
       name: PropTypes.string
     }),
     dispatch: PropTypes.func.isRequired
-  }
+  };
   render() {
     const { user: { name } } = this.props;
     return (

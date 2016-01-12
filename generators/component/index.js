@@ -5,7 +5,7 @@ const yosay = require("yosay");
 const _ = require("lodash");
 const libpath = require("path");
 
-module.exports = yeoman.generators.Base.extend({
+module.exports = yeoman.Base.extend({
   prompting(componentName) {
     const done = this.async();
 

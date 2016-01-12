@@ -1,0 +1,24 @@
+{
+  "name": "<%= props.projectname %>",
+  "description": "",
+  "version": "0.0.0",
+  "repository": "http://github.com/<%= props.githubuser %>/<%= props.projectname %>",
+  "main": "src/client.jsx",
+  "license": "MIT",
+  "scripts": {
+    "build": "rm -rf ./dist && mkdir dist && cp ./public/* ./dist/ && NODE_ENV=production node_modules/.bin/webpack --process && node scripts/template.js",
+    "start": "npm run server",
+    "server": "NODE_ENV=develop node_modules/.bin/webpack-dev-server --process --hot --content-base public",
+    "haproxy": "haproxy -f haproxy-config.conf",
+    "test": "npm run eslint && npm run stylelint",
+    "stylelint": "node_modules/.bin/stylelint src/**/*.css",
+    "csscomb": "node_modules/.bin/csscomb src/**/*.css",
+    "eslint": "node_modules/.bin/eslint *.js src/*.js src/*.jsx src/**/*.js src/**/*.jsx",
+    "precommit": "npm test",
+    "prepush": "npm test",
+    "postmerge": "npm install"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  }
+}

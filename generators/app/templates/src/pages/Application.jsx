@@ -11,7 +11,7 @@ import "./Application.css";
 export default class Application extends React.Component {
   static propTypes = {
     children: PropTypes.object
-  }
+  };
   render() {
     const { children } = this.props;
     return (

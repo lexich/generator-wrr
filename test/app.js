@@ -2,30 +2,35 @@
 /* global describe, it, before */
 const path = require("path");
 const assert = require("yeoman-assert");
-const helpers = require("yeoman-generator").test;
+const helpers = require("yeoman-test");
+const yeoman = require("yeoman-generator");
 
 describe("generator-wrr:app", function () {
   before(function (done) {
-    this.timeout(10000);
+    const self = this;
+    self.executeState = 0;
+    const Dummy = yeoman.Base.extend({
+      exec() {
+        self.executeState += 1;
+      }
+    });
+
     helpers.run(path.join(__dirname, "../generators/app"))
-      .withOptions({ someOption: true })
-      .withPrompts({ someAnswer: true })
+      .withOptions({ skipInstall: true })
+      .withPrompts({
+        projectname: "test",
+        githubuser: "lexich",
+        fullname: "lexich"
+      })
+      .withGenerators([
+        [Dummy, "wrr:pure"]
+      ])
       .on("end", done);
   });
 
   it("creates files", function () {
+    assert(this.executeState === 1);
     assert.file([
-      ".babelrc",
-      ".csscomb.json",
-      ".editorconfig",
-      ".eslintrc",
-      ".gitignore",
-      ".stylelint-config.js",
-      ".stylelintrc",
-      ".travis.yml",
-      "LICENSE",
-      "README.md",
-      "package.json",
       "template.html",
       "webpack.config.js",
       "css-external/cssvars.json",
