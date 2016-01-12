@@ -2,7 +2,6 @@
 const yeoman = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
-const libpath = require("path");
 const _ = require("lodash");
 
 module.exports = yeoman.Base.extend({
@@ -23,7 +22,6 @@ module.exports = yeoman.Base.extend({
   },
 
   writing() {
-
     // pure generator
     this.composeWith("wrr:pure", {
       options: this.options
@@ -68,6 +66,5 @@ module.exports = yeoman.Base.extend({
         (version, name)=> `${name}@${version}`);
       this.npmInstall(install, { save: true });
     }
-
   }
 });

@@ -1,7 +1,8 @@
 "use strict";
-var path = require("path");
-var assert = require("yeoman-assert");
-var helpers = require("yeoman-test");
+/* global describe, it, before */
+const path = require("path");
+const assert = require("yeoman-assert");
+const helpers = require("yeoman-test");
 
 describe("generator-wrr:pure", function () {
   before(function (done) {
@@ -11,9 +12,7 @@ describe("generator-wrr:pure", function () {
         githubuser: "lexich",
         fullname: "lexich"
       })
-      .withOptions({
-        skipInstall: true
-      })
+      .withOptions({ skipInstall: true })
       .on("end", done);
   });
 

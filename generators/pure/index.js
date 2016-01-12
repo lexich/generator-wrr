@@ -14,6 +14,7 @@ module.exports = yeoman.Base.extend({
       "Welcome to the pure js " + chalk.red("generator-wrr") + " generator!"
     ));
 
+    /* eslint key-spacing: 0 */
     const prompts = [{
       type    : "input",
       name    : "projectname",
@@ -36,7 +37,6 @@ module.exports = yeoman.Base.extend({
       // To access props later use this.props.someOption;
       done();
     }.bind(this));
-
   },
   writing() {
     this.fs.copy(
