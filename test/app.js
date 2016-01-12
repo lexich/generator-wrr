@@ -7,6 +7,7 @@ const yeoman = require("yeoman-generator");
 
 describe("generator-wrr:app", function () {
   before(function (done) {
+    this.timeout(10000);
     const self = this;
     self.executeState = 0;
     const Dummy = yeoman.Base.extend({
