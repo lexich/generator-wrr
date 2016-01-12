@@ -7,7 +7,9 @@ First, install [Yeoman](http://yeoman.io) and generator-wrr using [npm](https://
 
 ```bash
 npm install -g yo
-npm install -g generator-wrr
+git clone https://github.com/lexich/generator-wrr.git
+cd generator-wrr
+npm link
 ```
 
 Then generate your new project:
