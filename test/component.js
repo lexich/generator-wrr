@@ -37,9 +37,9 @@ describe("generator-wrr:component", function () {
       assert.fileContent("src/pages/TestComponent.jsx",
         `export default class TestComponentPage`);
       assert.fileContent("src/pages/TestComponent.jsx",
-        `      <div className="TestComponentPage">`);
+        `      <div className={style.root}>`);
       assert.fileContent("src/pages/TestComponent.css",
-        `.TestComponentPage`
+        `.root`
       );
     });
   });

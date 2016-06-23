@@ -1,17 +1,21 @@
 "use strict";
 
 import React, { PropTypes } from "react";
-import "./<%= props.componentName %>.css";
+import styleCSS from "./<%= props.componentName %>.css";
 
 export default class <%= props.componentName %> extends React.Component {
   static propTypes = {
-    children: PropTypes.element
+    children: PropTypes.element,
+    style: PropTypes.object.isRequired
+  };
+  static defaultProps = {
+    style: styleCSS
   };
   render() {
-    const { children } = this.props;
+    const { children, style } = this.props;
     return (
-      <div className="<%= props.componentName %>">
-        { children }
+      <div className={style.root}>
+        {children}
       </div>
     );
   }

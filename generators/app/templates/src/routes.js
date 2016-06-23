@@ -1,8 +1,8 @@
 "use strict";
 
 import rest from "./rest";
-import Application from "./pages/Application";
-import Index from "./pages/Index";
+import Application from "pages/Application";
+import Index from "pages/Index";
 
 export default function routes({ dispatch }) {
   return {

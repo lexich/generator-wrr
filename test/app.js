@@ -39,6 +39,8 @@ describe("generator-wrr:app", function () {
       "public/robots.txt",
       "public/user.json",
       "src/client.jsx",
+      "src/components/Hello.css",
+      "src/components/Hello.jsx",
       "src/pages/Application.css",
       "src/pages/Application.jsx",
       "src/pages/Index.css",
