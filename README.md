@@ -27,7 +27,7 @@ Yeoman has a heart of gold. He&#39;s a person with feelings and opinions, but he
 
 ## License
 
-MIT © [Efremov Alexey]()
+MIT © [Efremov Alexey](https://github.com/lexich/generator-wrr/blob/master/LICENSE)
 
 
 [npm-image]: https://badge.fury.io/js/generator-wrr.svg
