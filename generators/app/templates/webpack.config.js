@@ -85,7 +85,14 @@ module.exports = {
         test: /\.css$/,
         loader: NODE_ENV === "production" ?
           ExtractTextPlugin.extract("css?sourceMap&modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]!postcss") :
-          "style!css?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]!postcss"
+          "style!css?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]!postcss",
+        exclude: /\/node_modules\//
+      }, {
+        test: /\.css$/,
+        loader: NODE_ENV === "production" ?
+          ExtractTextPlugin.extract("css?sourceMap!postcss") :
+          "style!css!postcss",
+        include: /\/node_modules\//
       }, {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
         loader: "file?limit=10000&name=[name]-[hash].[ext]"
