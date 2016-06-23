@@ -76,10 +76,6 @@ module.exports = yeoman.Base.extend({
       this.destinationPath(".gitignore")
     );
     this.fs.copy(
-      this.templatePath("_stylelint-config.js"),
-      this.destinationPath(".stylelint-config.js")
-    );
-    this.fs.copy(
       this.templatePath("_stylelintrc"),
       this.destinationPath(".stylelintrc")
     );

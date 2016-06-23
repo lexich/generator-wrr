@@ -1,6 +1,16 @@
 {
   "extends": [
-    "stylelint-config-suitcss",
-    "./.stylelint-config"
-  ]
+    "stylelint-config-suitcss"
+  ],
+  "ignoreFiles": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/web_modules/**"
+  ],
+  "rules": {
+     "selector-pseudo-element-colon-notation": null,
+     "at-rule-empty-line-before": null,
+     "declaration-block-properties-order": null,
+     "function-url-quotes": "always"
+  }
 }

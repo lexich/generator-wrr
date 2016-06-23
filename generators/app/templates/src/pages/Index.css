@@ -1,8 +1,8 @@
-.IndexPage {
+.root {
   width: 100%;
   height: 100%;
 }
 
-.IndexPage__username {
+.username {
   color: var(--color-grey);
 }

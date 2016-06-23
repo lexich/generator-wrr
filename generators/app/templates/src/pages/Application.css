@@ -1,8 +1,8 @@
-.ApplicationPage {
+.root {
   display: block;
 }
 
-.ApplicationPage__content {
+.content {
   width: 100vw;
   height: 100vh;
 }

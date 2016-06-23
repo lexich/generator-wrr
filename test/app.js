@@ -43,7 +43,7 @@ describe("generator-wrr:app", function () {
       "src/pages/Application.jsx",
       "src/pages/Index.css",
       "src/pages/Index.jsx",
-      "src/rest/index.js",
+      "src/rest.js",
       "src/rest/user.js"
     ]);
   });

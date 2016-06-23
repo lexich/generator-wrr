@@ -16,9 +16,9 @@ const calc = require("postcss-calc");
 const mixins = require("postcss-mixins");
 
 const NODE_ENV = process.env.NODE_ENV;
+const PORT = process.env.PORT || 8080;
 
 let plugins = [
-
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.HotModuleReplacementPlugin(),
   new webpack.NoErrorsPlugin()
@@ -57,7 +57,7 @@ const devtool = NODE_ENV === "production" ? "source-map" : "eval-source-map";
 let entry = "./src/client.jsx";
 if (NODE_ENV !== "production") {
   entry = [
-    "webpack-dev-server/client?http://0.0.0.0:8080", // WebpackDevServer host and port
+    `webpack-dev-server/client?http://0.0.0.0:${PORT}`, // WebpackDevServer host and port
     "webpack/hot/only-dev-server"
   ].concat(entry);
 }
@@ -70,7 +70,7 @@ module.exports = {
     }),
   ].concat(plugins).concat(
     new ManifestPlugin({
-      fileName: `manifest.json`
+      fileName: "manifest.json"
     })
   ),
   module: {
@@ -81,10 +81,11 @@ module.exports = {
         include: path.join(__dirname, "src")
       },
       {
+        /* eslint max-len: 0 */
         test: /\.css$/,
         loader: NODE_ENV === "production" ?
-          ExtractTextPlugin.extract("css?sourceMap!postcss") :
-          "style!css!postcss"
+          ExtractTextPlugin.extract("css?sourceMap&modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]!postcss") :
+          "style!css?modules&importLoaders=2&localIdentName=[name]__[local]___[hash:base64:5]!postcss"
       }, {
         test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
         loader: "file?limit=10000&name=[name]-[hash].[ext]"
@@ -110,10 +111,11 @@ module.exports = {
   },
   output: {
     path: "dist",
-    filename: `main.[hash].js`
+    filename: "main.[hash].js"
   },
   debug: true,
   devServer: {
+    port: PORT,
     historyApiFallback: true,
     hot: true,
     inline: true,

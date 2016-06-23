@@ -23,7 +23,6 @@ describe("generator-wrr:pure", function () {
       ".editorconfig",
       ".eslintrc",
       ".gitignore",
-      ".stylelint-config.js",
       ".stylelintrc",
       ".travis.yml",
       "LICENSE",

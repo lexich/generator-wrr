@@ -2,21 +2,25 @@
 
 import React, { PropTypes } from "react";
 import { connect } from "react-redux";
-import "./Index.css";
+import styleCSS from "./Index.css";
 
 class Index extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
       name: PropTypes.string
     }),
+    style: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired
   };
+  static defaultProps = {
+    style: styleCSS
+  };
   render() {
-    const { user: { name } } = this.props;
+    const { user: { name }, style } = this.props;
     return (
-      <div className="IndexPage">
+      <div className={style.root}>
         <h1>Index Page</h1>
-        <p>Hello <span className="IndexPage__username">{ name }</span></p>
+        <p>Hello <span className={style.username}>{name}</span></p>
       </div>
     );
   }

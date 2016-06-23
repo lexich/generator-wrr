@@ -4,8 +4,8 @@ import React from "react";
 import { render } from "react-dom";
 
 // react-router
-import Router from "react-router";
-import { default as routes, history } from "./routes";
+import { Router, hashHistory as history } from "react-router";
+import routes from "./routes";
 
 // redux
 import { createStore, applyMiddleware, combineReducers } from "redux";
@@ -17,18 +17,19 @@ import reduxError from "redux-error";
 import rest from "./rest";
 import "isomorphic-fetch";
 
-rest.use("fetch", (url, opts)=> {
-  return fetch(url, opts).then((r)=> r.json().then(
-    (d)=> new Promise(
-      (resolve, reject)=> {
-        if (r.status >= 200 && r.status < 300) {
-          resolve(d);
-        } else {
-          reject(d);
-        }
+rest.use("fetch",
+  (url, opts)=> fetch(url, opts)
+    .then((r)=> {
+      if (r.status === 204) {
+        return {};
+      } else {
+        const isOk = r.status >= 200 && r.status <= 300;
+        return r.json().then(
+          (d)=> isOk ? d : Promise.reject(d));
       }
-    )));
-});
+    })
+);
+
 
 import createLogger from "redux-logger";
 
@@ -49,7 +50,7 @@ const el = document.getElementById(
 
 render(
   <Provider store={store}>
-    <Router key="ta-app" history={history} children={childRoutes}/>
+    <Router key="ta-app" history={history} children={childRoutes} />
   </Provider>,
   el
 );
