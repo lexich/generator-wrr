@@ -2,14 +2,14 @@
 
 import rest from "./rest";
 import Application from "pages/Application";
-import Index from "pages/Index";
+import IndexPage from "pages/IndexPage";
 
 export default function routes({ dispatch }) {
   return {
     path: "/",
     component: Application,
     indexRoute: {
-      component: Index,
+      component: IndexPage,
       onEnter(state, replaceState, cb) {
         dispatch(rest.actions.user(cb));
       }

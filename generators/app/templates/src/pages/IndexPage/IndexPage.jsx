@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from "react";
 import { connect } from "react-redux";
-import styleCSS from "./Index.css";
+import styleCSS from "./IndexPage.css";
 
 import Hello from "components/Hello";
 

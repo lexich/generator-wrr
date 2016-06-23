@@ -31,14 +31,14 @@ describe("generator-wrr:component", function () {
     it("check", function () {
       this.timeout(10000);
       assert.file([
-        "src/pages/TestComponent.jsx",
-        "src/pages/TestComponent.css",
+        "src/pages/TestComponentPage/TestComponentPage.jsx",
+        "src/pages/TestComponentPage/TestComponentPage.css",
       ]);
-      assert.fileContent("src/pages/TestComponent.jsx",
+      assert.fileContent("src/pages/TestComponentPage/TestComponentPage.jsx",
         `export default class TestComponentPage`);
-      assert.fileContent("src/pages/TestComponent.jsx",
+      assert.fileContent("src/pages/TestComponentPage/TestComponentPage.jsx",
         `      <div className={style.root}>`);
-      assert.fileContent("src/pages/TestComponent.css",
+      assert.fileContent("src/pages/TestComponentPage/TestComponentPage.css",
         `.root`
       );
     });

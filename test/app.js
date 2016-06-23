@@ -41,10 +41,10 @@ describe("generator-wrr:app", function () {
       "src/client.jsx",
       "src/components/Hello.css",
       "src/components/Hello.jsx",
-      "src/pages/Application.css",
-      "src/pages/Application.jsx",
-      "src/pages/Index.css",
-      "src/pages/Index.jsx",
+      "src/pages/Application/Application.css",
+      "src/pages/Application/Application.jsx",
+      "src/pages/IndexPage/IndexPage.css",
+      "src/pages/IndexPage/IndexPage.jsx",
       "src/rest.js",
       "src/rest/user.js"
     ]);
