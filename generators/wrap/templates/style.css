@@ -1,0 +1,8 @@
+/* pages/<%= props.pageName %>>/<%= props.finalName %>.css */
+/* overwrite for components/<%= props.componentName %>.css */
+
+/*
+.root {
+  composes: root from "../../components/<%= props.componentName %>/<%= props.componentName %>.css";
+}
+ */
