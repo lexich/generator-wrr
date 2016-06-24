@@ -13,7 +13,12 @@ module.exports = yeoman.Base.extend({
       "Welcome to the Webpack-React-Redux " + chalk.red("generator-wrr") + " generator!"
     ));
 
-    const prompts = [];
+    const prompts = [{
+      type:     "input",
+      name:     "remotehost",
+      message:  "Input remote host",
+      default:  "http://locahost:3000"
+    }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
@@ -22,11 +27,6 @@ module.exports = yeoman.Base.extend({
   },
 
   writing() {
-    // pure generator
-    this.composeWith("wrr:pure", {
-      options: this.options
-    });
-
     // app
     this.directory(
       this.templatePath("css-external"),
@@ -48,6 +48,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath("webpack-loaders"),
       this.destinationPath("webpack-loaders")
     );
+    this.directory(
+      this.templatePath("scripts"),
+      this.destinationPath("scripts")
+    );
 
     // overwrite client.jsx
     this.fs.copy(
@@ -60,10 +64,25 @@ module.exports = yeoman.Base.extend({
       this.templatePath("template.html"),
       this.destinationPath("template.html")
     );
-    this.fs.copy(
+    this.copy(
       this.templatePath("webpack.config.js"),
       this.destinationPath("webpack.config.js")
     );
+  },
+
+  package() {
+    // pure generator
+    const end = this.composeWith("wrr:pure", {
+      options: this.options
+    });
+    end.on("end", ()=> {
+      const path = this.destinationPath("package.json");
+      const packageJSON = JSON.parse(this.read(path));
+      packageJSON.scripts["proxy-build"] =
+        "npm run build && node ./scripts/proxy-server.js"
+      const newPackageJSON = JSON.stringify(packageJSON, null, 2);
+      this.fs.write(path, newPackageJSON);
+    });
   },
 
   install() {

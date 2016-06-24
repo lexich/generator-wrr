@@ -46,11 +46,9 @@ if (NODE_ENV === "production") {
   );
 }
 
-if (NODE_ENV !== "production") {
-  plugins = plugins.concat(new HtmlWebpackPlugin({
-    template: "./template.html"
-  }));
-}
+plugins = plugins.concat(new HtmlWebpackPlugin({
+  template: "./template.html"
+}));
 
 const devtool = NODE_ENV === "production" ? "source-map" : "eval-source-map";
 
@@ -139,11 +137,11 @@ module.exports = {
     progress: true,
     proxy: {
       // "/api/*": {
-      //   target: "http://host.com",
+      //   target: "<%= props.remotehost %>",
       //   secure: false,
       //   bypass(req) {
-      //     req.headers.host = "http://host.com";
-      //     req.headers.referer = "http://host.com";
+      //     req.headers.host = "<%= props.remotehost %>";
+      //     req.headers.referer = "<%= props.remotehost %>";
       //   }
       // }
     }

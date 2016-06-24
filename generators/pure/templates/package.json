@@ -6,7 +6,7 @@
   "main": "src/client.jsx",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist && mkdir dist && cp ./public/* ./dist/ && NODE_ENV=production node_modules/.bin/webpack --process && node scripts/template.js",
+    "build": "rm -rf ./dist && mkdir dist && cp ./public/* ./dist/ && NODE_ENV=production node_modules/.bin/webpack --process",
     "start": "npm run server",
     "server": "NODE_ENV=develop node_modules/.bin/webpack-dev-server --process --hot --content-base public",
     "haproxy": "haproxy -f haproxy-config.conf",

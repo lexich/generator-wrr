@@ -14,22 +14,21 @@ module.exports = yeoman.Base.extend({
       "Welcome to the pure js " + chalk.red("generator-wrr") + " generator!"
     ));
 
-    /* eslint key-spacing: 0 */
     const prompts = [{
-      type    : "input",
-      name    : "projectname",
-      message : "Your project name",
-      default : libpath.basename(this.env.cwd)
+      type:     "input",
+      name:     "projectname",
+      message:  "Your project name",
+      default:  libpath.basename(this.env.cwd)
     }, {
-      type    : "input",
-      name    : "githubuser",
-      message : "Input github username",
-      default : "username"
+      type:     "input",
+      name:     "githubuser",
+      message:  "Input github username",
+      default:  "username"
     }, {
-      type    : "input",
-      name    : "fullname",
-      message : "Input your full name",
-      default : "Full Name"
+      type:     "input",
+      name:     "fullname",
+      message:  "Input your full name",
+      default:  "Full Name"
     }];
 
     this.prompt(prompts, function (props) {
