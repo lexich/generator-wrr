@@ -1,3 +1,4 @@
 {
-  "--color-grey": "#bababa"
+  "--color-grey": "#bababa",
+  "--color-black": "#000000"
 }

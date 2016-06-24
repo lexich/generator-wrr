@@ -3,6 +3,7 @@
 import rest from "./rest";
 import Application from "pages/Application";
 import IndexPage from "pages/IndexPage";
+import AboutPage from "pages/AboutPage";
 
 export default function routes({ dispatch }) {
   return {
@@ -14,6 +15,9 @@ export default function routes({ dispatch }) {
         dispatch(rest.actions.apiUser(cb));
       }
     },
-    childRoutes: []
+    childRoutes: [{
+      path: "/about",
+      component: AboutPage
+    }]
   };
 }

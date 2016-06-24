@@ -1,0 +1,47 @@
+.root {
+  display: block;
+  padding: 20px;
+}
+
+.content {
+  display: block;
+}
+
+.content a {
+  color: var(--color-black);
+}
+
+.content a:hover {
+  text-decoration: none;
+}
+
+.content h1 {
+  font-size: 200%;
+  line-height: 1em;
+}
+
+.content h2 {
+  font-size: 150%;
+  line-height: 2em;
+}
+
+.content ul > li {
+  list-style-type: circle;
+}
+
+.content ol > li {
+  list-style-type: decimal;
+}
+
+.content ul,
+.content ol {
+  padding-left: 25px;
+}
+
+.link {
+  color: var(--color-black);
+}
+
+.link:hover {
+  text-decoration: none;
+}

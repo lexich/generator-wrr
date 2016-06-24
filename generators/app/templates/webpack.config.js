@@ -109,6 +109,9 @@ module.exports = {
       }, {
         test: /\.json$/,
         loader: "json"
+      }, {
+        test: /\.md$/,
+        loader: "raw"
       }
     ]
   },
@@ -131,11 +134,11 @@ module.exports = {
     progress: true,
     proxy: {
       // "/api/*": {
-      //   target: "<%= props.remotehost %>",
+      //   target: "http://locahost:3000",
       //   secure: false,
       //   bypass(req) {
-      //     req.headers.host = "<%= props.remotehost %>";
-      //     req.headers.referer = "<%= props.remotehost %>";
+      //     req.headers.host = "http://locahost:3000";
+      //     req.headers.referer = "http://locahost:3000";
       //   }
       // }
     }

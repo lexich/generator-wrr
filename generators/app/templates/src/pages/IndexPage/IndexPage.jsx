@@ -1,9 +1,11 @@
 "use strict";
 
 import React, { PropTypes } from "react";
+import { Link } from "react-router";
 import { connect } from "react-redux";
 import styleCSS from "./IndexPage.css";
 import Hello from "./IndexPage.Hello";
+
 
 class Index extends React.Component {
   static propTypes = {
@@ -29,6 +31,7 @@ class Index extends React.Component {
         <p className={style.description}>
           Hello <span className={style.username}>{name}!</span>
         </p>
+        <Link className={style.aboutpage} to={"about"}>Go to about page</Link>
       </div>
     );
   }

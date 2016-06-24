@@ -1,9 +1,13 @@
 "use strict";
 
 import React, { PropTypes } from "react";
-import styleCSS from "./<%= props.componentName %>.css";
+import ReactMarkdown from "react-markdown";
+import { Link } from "react-router";
 
-export default class <%= props.componentName %> extends React.Component {
+import styleCSS from "./AboutPage.css";
+import aboutMD from "./about.md";
+
+export default class AboutPage extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     children: PropTypes.element,
@@ -18,6 +22,8 @@ export default class <%= props.componentName %> extends React.Component {
       (this.props.className ? ` ${this.props.className}` : "");
     return (
       <div className={className}>
+        <Link className={style.link} to={""}>Go to main page</Link>
+        <ReactMarkdown className={style.content} source={aboutMD} />
         {children}
       </div>
     );

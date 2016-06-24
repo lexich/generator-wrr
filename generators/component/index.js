@@ -54,22 +54,21 @@ module.exports = yeoman.Base.extend({
   writing() {
     const componentName = this.props.componentName;
     const typeComponent = this.props.typeComponent;
-    const dir = libpath.join("src", typeComponent,
-      (typeComponent === "pages" ? componentName : ""));
+    const dir = libpath.join("src", typeComponent, componentName);
 
     this.copy(
       this.templatePath("style.css"),
       this.destinationPath(libpath.join(dir, componentName + ".css"))
     );
+
     this.copy(
       this.templatePath("component.jsx"),
       this.destinationPath(libpath.join(dir, componentName + ".jsx"))
     );
-    if (typeComponent === "pages") {
-      this.copy(
-        this.templatePath("root.ejs"),
-        this.destinationPath(libpath.join(dir, "index.js"))
-      );
-    }
+
+    this.copy(
+      this.templatePath("root.ejs"),
+      this.destinationPath(libpath.join(dir, "index.js"))
+    );
   }
 });

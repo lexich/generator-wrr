@@ -27,8 +27,17 @@
   margin-top: 200px;
 }
 
-
 .username {
   color: var(--color-grey);
   text-align: center;
+}
+
+.aboutpage {
+  text-align: right;
+  float: right;
+  color: var(--color-black);
+}
+
+.aboutpage:hover {
+  text-decoration: none;
 }

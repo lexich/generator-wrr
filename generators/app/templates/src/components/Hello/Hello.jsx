@@ -14,12 +14,13 @@ export default class Hello extends React.Component {
     style: styleCSS
   };
   render() {
-    const { className, children, style } = this.props;
+    const { children, style } = this.props;
 
-    const classRoot = style.root +
-      (className ? ` ${className}` : "");
+    const className = style.root +
+      (this.props.className ? ` ${this.props.className}` : "");
+
     return (
-      <span className={classRoot}>
+      <span className={className}>
         <img className={style.image} src={imageSeaLion} />
       </span>
     );

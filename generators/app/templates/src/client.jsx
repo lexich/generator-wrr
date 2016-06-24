@@ -6,7 +6,7 @@ import React from "react";
 import { render } from "react-dom";
 
 // react-router
-import { Router, hashHistory as history } from "react-router";
+import { Router, browserHistory as history } from "react-router";
 import routes from "./routes";
 
 // redux
