@@ -1,0 +1,4 @@
+.image {
+  composes: image from "../../components/Hello/Hello.css";
+  min-width: 300px;
+}

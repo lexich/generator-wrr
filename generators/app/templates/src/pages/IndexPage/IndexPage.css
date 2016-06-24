@@ -1,8 +1,34 @@
 .root {
-  width: 100%;
-  height: 100%;
+  width: 700px;
+  margin: 0 auto;
+  text-align: center;
 }
+
+.title b {
+  font-weight: bold;
+}
+
+.description {
+  font-size: 150%;
+}
+
+
+.userpic {
+  display: inline-block;
+  margin-top: -151px;
+}
+
+.throne {
+  background: url(./throne.jpg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 300px;
+  margin-top: 200px;
+}
+
 
 .username {
   color: var(--color-grey);
+  text-align: center;
 }

@@ -96,22 +96,16 @@ module.exports = {
           "style!css!postcss",
         include: /\/node_modules\//
       }, {
-        test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file?limit=10000&name=[name]-[hash].[ext]"
-      }, {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file?limit=10000&name=[name]-[hash].[ext]"
-      }, {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file?limit=10000&name=[name]-[hash].[ext]"
-      }, {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file?limit=10000&name=[name]-[hash].[ext]"
-      }, {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loaders: [
           "file?hash=sha512&digest=hex&name=[name]-[hash].[ext]"
         ]
+      }, {
+        test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "file?limit=10000&name=[name]-font-[hash].[ext]"
+      }, {
+        test: /\.svg(\?v=\d+\.\d+\.\d+){1}$/,
+        loader: "file?limit=10000&name=[name]-font-[hash].[ext]"
       }, {
         test: /\.json$/,
         loader: "json"
@@ -170,7 +164,8 @@ module.exports = {
     modulesDirectories: ["web_modules", "node_modules"],
     alias: {
       "components": path.join(__dirname, "src", "components"),
-      "pages": path.join(__dirname, "src", "pages")
+      "pages": path.join(__dirname, "src", "pages"),
+      "utils": path.join(__dirname, "src", "utils")
     }
   }
 };
