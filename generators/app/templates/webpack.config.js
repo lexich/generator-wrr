@@ -74,6 +74,10 @@ module.exports = {
     })
   ),
   module: {
+    preLoaders: [{
+      test: /\/src\/client\.jsx$/,
+      loader: `preprocess?{'process.env.NODE_ENV': '${NODE_ENV}'}`
+    }],
     loaders: [
       {
         test: /\.(js|jsx)$/,
@@ -120,6 +124,12 @@ module.exports = {
     path: "dist",
     filename: "main.[hash].js"
   },
+  resolveLoader: {
+    modulesDirectories: [
+      path.resolve(__dirname, "webpack-loaders"),
+      path.resolve(__dirname, "node_modules")
+    ]
+  },
   debug: true,
   devServer: {
     port: PORT,
@@ -127,7 +137,16 @@ module.exports = {
     hot: true,
     inline: true,
     progress: true,
-    proxy: {}
+    proxy: {
+      // "/api/*": {
+      //   target: "http://host.com",
+      //   secure: false,
+      //   bypass(req) {
+      //     req.headers.host = "http://host.com";
+      //     req.headers.referer = "http://host.com";
+      //   }
+      // }
+    }
   },
   postcss() {
     let variables = {};
@@ -150,6 +169,7 @@ module.exports = {
   },
   resolve: {
     extensions: ["", ".js", ".jsx"],
+    modulesDirectories: ["web_modules", "node_modules"],
     alias: {
       "components": path.join(__dirname, "src", "components"),
       "pages": path.join(__dirname, "src", "pages")

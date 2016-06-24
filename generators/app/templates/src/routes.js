@@ -11,7 +11,7 @@ export default function routes({ dispatch }) {
     indexRoute: {
       component: IndexPage,
       onEnter(state, replaceState, cb) {
-        dispatch(rest.actions.user(cb));
+        dispatch(rest.actions.apiUser(cb));
       }
     },
     childRoutes: []

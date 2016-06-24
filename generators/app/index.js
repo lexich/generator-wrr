@@ -40,6 +40,20 @@ module.exports = yeoman.Base.extend({
       this.templatePath("src"),
       this.destinationPath("src")
     );
+    this.directory(
+      this.templatePath("web_modules"),
+      this.destinationPath("web_modules")
+    );
+    this.directory(
+      this.templatePath("webpack-loaders"),
+      this.destinationPath("webpack-loaders")
+    );
+
+    // overwrite client.jsx
+    this.fs.copy(
+      this.templatePath("src/client.jsx"),
+      this.destinationPath("src/client.jsx")
+    );
 
     // configs
     this.fs.copy(

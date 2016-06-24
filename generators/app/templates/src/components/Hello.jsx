@@ -5,7 +5,6 @@ import styleCSS from "./Hello.css";
 
 export default class Hello extends React.Component {
   static propTypes = {
-    children: PropTypes.element,
     style: PropTypes.object.isRequired
   };
   static defaultProps = {
@@ -15,7 +14,7 @@ export default class Hello extends React.Component {
     const { children, style } = this.props;
     return (
       <span className={style.root}>
-        {children}
+        Hello
       </span>
     );
   }

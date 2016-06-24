@@ -34,6 +34,8 @@ describe("generator-wrr:app", function () {
     assert.file([
       "template.html",
       "webpack.config.js",
+      "web_modules/.gitkeep",
+      "webpack-loaders/preprocess-loader.js",
       "css-external/cssvars.json",
       "css-external/mixins/ellipsis.css",
       "public/robots.txt",

@@ -13,7 +13,9 @@
     "redux-error": "0.0.1",
     "redux-thunk": "2.1.0",
     "reset.css": "2.0.2",
-    "redux-logger": "2.6.1"
+    "redux-devtools": "3.3.1",
+    "redux-devtools-dock-monitor": "1.1.1",
+    "redux-devtools-log-monitor": "1.0.11"
   },
   "devDependencies": {
     "autoprefixer": "6.3.6",
@@ -26,6 +28,7 @@
     "file-loader": "0.9.0",
     "html-webpack-plugin": "1.7.0",
     "json-loader": "0.5.4",
+    "loader-utils": "0.2.15",
     "postcss-calc": "5.2.1",
     "postcss-css-variables": "0.5.1",
     "postcss-loader": "0.9.1",

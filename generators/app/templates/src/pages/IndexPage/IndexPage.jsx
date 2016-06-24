@@ -23,7 +23,7 @@ class Index extends React.Component {
       <div className={style.root}>
         <h1>Index Page</h1>
         <p>
-          <Hello>Hello</Hello>
+          <Hello/>
           <span className={style.username}>{name}</span>
         </p>
       </div>
@@ -32,5 +32,5 @@ class Index extends React.Component {
 }
 
 export default connect((state)=> ({
-  user: state.user.data
+  user: state.apiUser.data
 }))(Index);

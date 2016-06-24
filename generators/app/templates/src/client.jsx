@@ -1,5 +1,7 @@
 "use strict";
-const DEBUG = false && process.env.NODE_ENV === "develop";
+// Mode: <%= process.env.NODE_ENV %>
+
+const DEBUG = true && process.env.NODE_ENV === "develop";
 import React from "react";
 import { render } from "react-dom";
 
@@ -8,7 +10,7 @@ import { Router, hashHistory as history } from "react-router";
 import routes from "./routes";
 
 // redux
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 import reduxError from "redux-error";
@@ -30,14 +32,48 @@ rest.use("fetch",
     })
 );
 
+let DevTools;
+/* <% if(process.env.NODE_ENV === 'develop') { %> */
 
-import createLogger from "redux-logger";
+// Redux DevTools store enhancers
+import { createDevTools, persistState } from "redux-devtools";
+import LogMonitor from "redux-devtools-log-monitor";
+import DockMonitor from "redux-devtools-dock-monitor";
+if (DEBUG) {
+  DevTools = createDevTools(
+    <DockMonitor
+      defaultIsVisible={false}
+      toggleVisibilityKey="ctrl-h"
+      changePositionKey="ctrl-q"
+    >
+      <LogMonitor theme="tomorrow" />
+    </DockMonitor>
+  );
+}
+/* <% } %> */
+
+const reducers = {};
 
 // Prepare store
-const reducer = combineReducers({ ...rest.reducers });
-const finalCreateStore = DEBUG ?
-  applyMiddleware(reduxError, thunk, createLogger())(createStore) :
-  applyMiddleware(reduxError, thunk)(createStore);
+const reducer = combineReducers({ ...rest.reducers, ...reducers });
+
+let midleware = [applyMiddleware(reduxError, thunk)];
+
+/* <% if(process.env.NODE_ENV === 'develop') { %> */
+if (DEBUG) {
+  const getDebugSessionKey = function () {
+    const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/);
+    return (matches && matches.length > 0) ? matches[1] : null;
+  };
+  midleware = midleware.concat(
+    DevTools.instrument(),
+    persistState(getDebugSessionKey())
+  );
+}
+/* <% } %> */
+
+const finalCreateStore = compose.apply(null, midleware)(createStore);
+
 const initialState = window.$REDUX_STATE;
 const store = initialState ? finalCreateStore(reducer, initialState) : finalCreateStore(reducer);
 delete window.$REDUX_STATE;
@@ -50,7 +86,10 @@ const el = document.getElementById(
 
 render(
   <Provider store={store}>
-    <Router key="ta-app" history={history} children={childRoutes} />
+    <div className="ApplicationRoot">
+      <Router key="ta-app" history={history} children={childRoutes} />
+      {DevTools ? <DevTools /> : null}
+    </div>
   </Provider>,
   el
 );
