@@ -13,7 +13,7 @@ module.exports = yeoman.Base.extend({
     this.log(yosay(
       "Welcome to the pure js " + chalk.red("generator-wrr") + " generator!"
     ));
-
+    /* eslint key-spacing: 0 */
     const prompts = [{
       type:     "input",
       name:     "projectname",

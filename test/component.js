@@ -15,8 +15,9 @@ describe("generator-wrr:component", function () {
     it("check", function () {
       this.timeout(10000);
       assert.file([
-        "src/components/TestComponent.jsx",
-        "src/components/TestComponent.css",
+        "src/components/TestComponent/TestComponent.jsx",
+        "src/components/TestComponent/TestComponent.css",
+        "src/components/TestComponent/index.js"
       ]);
     });
   });
@@ -33,11 +34,12 @@ describe("generator-wrr:component", function () {
       assert.file([
         "src/pages/TestComponentPage/TestComponentPage.jsx",
         "src/pages/TestComponentPage/TestComponentPage.css",
+        "src/pages/TestComponentPage/index.js"
       ]);
       assert.fileContent("src/pages/TestComponentPage/TestComponentPage.jsx",
         `export default class TestComponentPage`);
       assert.fileContent("src/pages/TestComponentPage/TestComponentPage.jsx",
-        `      <div className={style.root}>`);
+        `      <div className={className}>`);
       assert.fileContent("src/pages/TestComponentPage/TestComponentPage.css",
         `.root`
       );

@@ -35,20 +35,37 @@ describe("generator-wrr:app", function () {
       "template.html",
       "webpack.config.js",
       "web_modules/.gitkeep",
+
       "webpack-loaders/preprocess-loader.js",
       "css-external/cssvars.json",
       "css-external/mixins/ellipsis.css",
       "public/robots.txt",
       "public/user.json",
+
       "src/client.jsx",
-      "src/components/Hello.css",
-      "src/components/Hello.jsx",
+      "src/routes.js",
+      "src/components/Hello/Hello.css",
+      "src/components/Hello/Hello.jsx",
+
+      "src/pages/AboutPage/AboutPage.css",
+      "src/pages/AboutPage/AboutPage.jsx",
+      "src/pages/AboutPage/index.js",
+      "src/pages/AboutPage/about.md",
+
       "src/pages/Application/Application.css",
       "src/pages/Application/Application.jsx",
+      "src/pages/Application/index.js",
+
       "src/pages/IndexPage/IndexPage.css",
       "src/pages/IndexPage/IndexPage.jsx",
+      "src/pages/IndexPage/index.js",
+      "src/pages/IndexPage/IndexPage.Hello.css",
+      "src/pages/IndexPage/IndexPage.Hello.jsx",
+      "src/pages/IndexPage/throne.jpg",
+
       "src/rest.js",
-      "src/rest/user.js"
+      "src/rest/user.js",
+      "src/utils/applyStyle.jsx"
     ]);
   });
 });

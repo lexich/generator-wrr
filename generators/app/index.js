@@ -13,6 +13,7 @@ module.exports = yeoman.Base.extend({
       "Welcome to the Webpack-React-Redux " + chalk.red("generator-wrr") + " generator!"
     ));
 
+    /* eslint key-spacing: 0 */
     const prompts = [{
       type:     "input",
       name:     "remotehost",
@@ -77,11 +78,16 @@ module.exports = yeoman.Base.extend({
     });
     end.on("end", ()=> {
       const path = this.destinationPath("package.json");
-      const packageJSON = JSON.parse(this.read(path));
-      packageJSON.scripts["proxy-build"] =
-        "npm run build && node ./scripts/proxy-server.js"
-      const newPackageJSON = JSON.stringify(packageJSON, null, 2);
-      this.fs.write(path, newPackageJSON);
+      try {
+        const packageJSON = JSON.parse(this.read(path));
+        packageJSON.scripts["proxy-build"] =
+          "npm run build && node ./scripts/proxy-server.js";
+        const newPackageJSON = JSON.stringify(packageJSON, null, 2);
+        this.fs.write(path, newPackageJSON);
+      } catch (e) {
+        this.log("process package.json fails:");
+        this.log(e);
+      }
     });
   },
 
