@@ -12,14 +12,13 @@
   font-size: 150%;
 }
 
-
 .userpic {
   display: inline-block;
   margin-top: -151px;
 }
 
 .throne {
-  background: url(./throne.jpg);
+  background: url("./throne.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;

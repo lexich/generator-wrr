@@ -166,9 +166,9 @@ module.exports = {
     extensions: ["", ".js", ".jsx"],
     modulesDirectories: ["web_modules", "node_modules"],
     alias: {
-      "components": path.join(__dirname, "src", "components"),
-      "pages": path.join(__dirname, "src", "pages"),
-      "utils": path.join(__dirname, "src", "utils")
+      components: path.join(__dirname, "src", "components"),
+      pages: path.join(__dirname, "src", "pages"),
+      utils: path.join(__dirname, "src", "utils")
     }
   }
 };

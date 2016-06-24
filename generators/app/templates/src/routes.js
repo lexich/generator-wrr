@@ -1,9 +1,9 @@
 "use strict";
 
 import rest from "./rest";
-import Application from "pages/Application";
-import IndexPage from "pages/IndexPage";
-import AboutPage from "pages/AboutPage";
+import Application from "./pages/Application";
+import IndexPage from "./pages/IndexPage";
+import AboutPage from "./pages/AboutPage";
 
 export default function routes({ dispatch }) {
   return {

@@ -6,8 +6,8 @@ const loader = require.context("./rest", true, /\.(js)$/);
 
 const rx = /^\.\/(.+)\.js$/;
 const config = loader.keys().reduce((memo, key)=> {
-  const name = "api" + capitalize(camelCase(key.replace(rx, "$1")));
-  memo[name] = loader(key);
+  const name = capitalize(camelCase(key.replace(rx, "$1")));
+  memo[`api${name}`] = loader(key);
   return memo;
 }, {});
 
