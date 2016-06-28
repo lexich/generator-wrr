@@ -52,7 +52,7 @@ if (DEBUG) {
 }
 /* <% } %> */
 
-const reducers = {};
+import reducers from "./reducers";
 
 // Prepare store
 const reducer = combineReducers({ ...rest.reducers, ...reducers });

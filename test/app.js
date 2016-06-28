@@ -44,6 +44,12 @@ describe("generator-wrr:app", function () {
 
       "src/client.jsx",
       "src/routes.js",
+
+      "src/constants.js",
+      "src/reducers.js",
+      "src/reducers/IndexPage.js",
+      "src/actions/IndexPage.js",
+
       "src/components/Hello/Hello.css",
       "src/components/Hello/Hello.jsx",
 

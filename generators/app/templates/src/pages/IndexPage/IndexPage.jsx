@@ -7,20 +7,24 @@ import { connect } from "react-redux";
 import styleCSS from "./IndexPage.css";
 import Hello from "./IndexPage.Hello";
 import readMe from "../../../README.md";
+import { increment, decrement } from "actions/IndexPage";
 
 class Index extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
       name: PropTypes.string
     }),
+    score: PropTypes.number.isRequired,
     style: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    increment: PropTypes.func.isRequired,
+    decrement: PropTypes.func.isRequired
   };
   static defaultProps = {
     style: styleCSS
   };
   render() {
-    const { user: { name }, style } = this.props;
+    const { user: { name }, score, style, increment, decrement } = this.props;
     return (
       <div className={style.root}>
         <h1 className={style.title}>
@@ -32,6 +36,12 @@ class Index extends React.Component {
         <p className={style.description}>
           Hello <span className={style.username}>{name}!</span>
         </p>
+        <div className={style.score}>
+          Score: { score }&nbsp;
+          <button onClick={increment}>+</button>
+          <button onClick={decrement}>-</button>
+        </div>
+        <br/>
         <Link className={style.aboutpage} to={"about"}>Go to about page</Link>
         <ReactMarkdown className={style.content} source={readMe} />
       </div>
@@ -40,5 +50,9 @@ class Index extends React.Component {
 }
 
 export default connect((state)=> ({
-  user: state.apiUser.data
+  user: state.apiUser.data,
+  score: state.IndexPage.score
+}), (dispatch)=> ({
+  increment: ()=> dispatch(increment()),
+  decrement: ()=> dispatch(decrement())
 }))(Index);

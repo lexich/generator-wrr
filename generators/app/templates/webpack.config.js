@@ -168,7 +168,8 @@ module.exports = {
     alias: {
       components: path.join(__dirname, "src", "components"),
       pages: path.join(__dirname, "src", "pages"),
-      utils: path.join(__dirname, "src", "utils")
+      utils: path.join(__dirname, "src", "utils"),
+      actions: path.join(__dirname, "src", "actions")
     }
   }
 };
