@@ -47,8 +47,8 @@ describe("generator-wrr:app", function () {
 
       "src/constants.js",
       "src/reducers.js",
-      "src/reducers/IndexPage.js",
-      "src/actions/IndexPage.js",
+      "src/reducers/index_page.js",
+      "src/actions/index_page.js",
 
       "src/components/Hello/Hello.css",
       "src/components/Hello/Hello.jsx",

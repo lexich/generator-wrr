@@ -1,2 +1,12 @@
 import <%= props.componentName %> from "./<%= props.componentName %>";
-export default <%= props.componentName %>;
+import { connect } from "react-redux";
+
+function mapStateToProps(state) {
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return {};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(<%= props.componentName %>);

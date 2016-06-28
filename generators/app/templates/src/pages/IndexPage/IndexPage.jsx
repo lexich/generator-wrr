@@ -3,20 +3,17 @@
 import React, { PropTypes } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router";
-import { connect } from "react-redux";
 import styleCSS from "./IndexPage.css";
 import Hello from "./IndexPage.Hello";
 import readMe from "../../../README.md";
-import { increment, decrement } from "actions/IndexPage";
 
-class Index extends React.Component {
+export default class IndexPage extends React.Component {
   static propTypes = {
     user: PropTypes.shape({
       name: PropTypes.string
     }),
     score: PropTypes.number.isRequired,
     style: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired
   };
@@ -49,10 +46,3 @@ class Index extends React.Component {
   }
 }
 
-export default connect((state)=> ({
-  user: state.apiUser.data,
-  score: state.IndexPage.score
-}), (dispatch)=> ({
-  increment: ()=> dispatch(increment()),
-  decrement: ()=> dispatch(decrement())
-}))(Index);
