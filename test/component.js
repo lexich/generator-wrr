@@ -43,6 +43,32 @@ describe("generator-wrr:component", function () {
       assert.fileContent("src/pages/TestComponentPage/TestComponentPage.css",
         `.root`
       );
+      assert.fileContent("src/pages/TestComponentPage/index.js", "react-redux");
+    });
+  });
+
+  describe("creates component with args", function () {
+    before(function(done) {
+      helpers.run(path.join(__dirname, "../generators/component"))
+        .withArguments(["test-component"])
+        .withOptions({ component: true })
+        .on("end", done);
+    });
+    it("check", function () {
+      this.timeout(10000);
+      assert.file([
+        "src/components/TestComponent/TestComponent.jsx",
+        "src/components/TestComponent/TestComponent.css",
+        "src/components/TestComponent/index.js"
+      ]);
+      assert.fileContent("src/components/TestComponent/TestComponent.jsx",
+        `export default class TestComponent`);
+      assert.fileContent("src/components/TestComponent/TestComponent.jsx",
+        `      <div className={className}>`);
+      assert.fileContent("src/components/TestComponent/TestComponent.css",
+        `.root`
+      );
+      assert.noFileContent("src/components/TestComponent/index.js", "react-redux");
     });
   });
 });
