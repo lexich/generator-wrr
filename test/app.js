@@ -38,7 +38,6 @@ describe("generator-wrr:app", function () {
 
       "webpack-loaders/preprocess-loader.js",
       "css-external/cssvars.json",
-      "css-external/mixins/ellipsis.css",
       "public/robots.txt",
       "public/user.json",
 

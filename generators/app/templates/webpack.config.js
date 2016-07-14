@@ -13,7 +13,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 const cssvariables = require("postcss-css-variables");
 const autoprefixer = require("autoprefixer");
 const calc = require("postcss-calc");
-const mixins = require("postcss-mixins");
+const utilities = require("postcss-utilities");
 
 const NODE_ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 8080;
@@ -154,7 +154,7 @@ module.exports = {
       console.log(e);
     }
     return [
-      mixins({ mixinsDir: path.join(__dirname, "css-external", "mixins") }),
+      utilities,
       cssvariables({ variables }),
       calc(),
       autoprefixer({
