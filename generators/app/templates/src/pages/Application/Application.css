@@ -2,7 +2,22 @@
   display: block;
 }
 
+.root em {
+  background: var(--color-yellow);
+  cursor: help;
+}
+
 .content {
   width: 100vw;
   height: 100vh;
+}
+
+.help {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  max-width: 200px;
+  border: 1px solid var(--color-green);
+  border-radius: 5px;
 }

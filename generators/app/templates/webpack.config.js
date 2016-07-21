@@ -12,6 +12,7 @@ const ManifestPlugin = require("webpack-manifest-plugin");
 // postcss
 const cssvariables = require("postcss-css-variables");
 const autoprefixer = require("autoprefixer");
+const customMedia = require("postcss-custom-media");
 const calc = require("postcss-calc");
 const utilities = require("postcss-utilities");
 
@@ -40,8 +41,11 @@ if (NODE_ENV === "production") {
       }
     }),
     new CompressionPlugin({
-      asset: "{file}.gz",
-      regExp: /\.(js|html|css)$/,
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.(js|html|css|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   );
 }
@@ -154,6 +158,7 @@ module.exports = {
       console.log(e);
     }
     return [
+      customMedia(),
       utilities,
       cssvariables({ variables }),
       calc(),

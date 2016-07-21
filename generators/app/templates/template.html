@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html{% if(o.htmlWebpackPlugin.files.manifest) { %} manifest="{%= o.htmlWebpackPlugin.files.manifest %}"{% } %}>
+<html<% if(htmlWebpackPlugin.files.manifest) { %> manifest="<%= htmlWebpackPlugin.files.manifest %>"<% } %>>
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta name="viewport" content="width=1020">
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <title>{%=o.htmlWebpackPlugin.options.title || 'generator wrr'%}</title>
-    {% for (var css in o.htmlWebpackPlugin.files.css) { %}
-    <link href="{%=o.htmlWebpackPlugin.files.css[css] %}" rel="stylesheet">
-    {% } %}
+    <title><%= htmlWebpackPlugin.options.title || 'generator wrr' %></title>
 
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
@@ -31,8 +28,5 @@
   </head>
   <body>
     <div id="react-main-mount"></div>
-    {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-    <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
-    {% } %}
   </body>
 </html>

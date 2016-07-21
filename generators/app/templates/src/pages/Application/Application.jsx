@@ -21,6 +21,10 @@ export default class Application extends React.Component {
     return (
       <div className={style.root}>
         <div className={style.content}>
+          <p className={style.help}>
+            Press <em>ctrl+h</em> to show redux debug panel
+            and <em>ctrl+q</em> to change it's position.
+          </p>
           {children}
         </div>
       </div>
