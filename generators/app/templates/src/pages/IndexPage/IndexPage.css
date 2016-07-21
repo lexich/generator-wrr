@@ -1,3 +1,4 @@
+@value color-grey, color-black from "vars.css";
 .root {
   width: 700px;
   margin: 0 auto;
@@ -27,14 +28,14 @@
 }
 
 .username {
-  color: var(--color-grey);
+  color: color-grey;
   text-align: center;
 }
 
 .aboutpage {
   text-align: right;
   float: right;
-  color: var(--color-black);
+  color: color-black;
 }
 
 .aboutpage:hover {

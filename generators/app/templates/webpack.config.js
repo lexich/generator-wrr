@@ -2,7 +2,6 @@
 "use strict";
 
 const webpack = require("webpack");
-const fs = require("fs");
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -148,19 +147,10 @@ module.exports = {
     }
   },
   postcss() {
-    let variables = {};
-    try {
-      const data = fs.readFileSync(
-        path.join(__dirname, "css-external", "cssvars.json"));
-      variables = JSON.parse(data);
-    } catch (e) {
-      /* eslint no-console: 0 */
-      console.log(e);
-    }
     return [
       customMedia(),
       utilities,
-      cssvariables({ variables }),
+      cssvariables({ variables: {} }),
       calc(),
       autoprefixer({
         browsers: ["last 222 version", "ie >= 8", "ff >= 17", "opera >=10"]
@@ -174,7 +164,8 @@ module.exports = {
       components: path.join(__dirname, "src", "components"),
       pages: path.join(__dirname, "src", "pages"),
       utils: path.join(__dirname, "src", "utils"),
-      actions: path.join(__dirname, "src", "actions")
+      actions: path.join(__dirname, "src", "actions"),
+      "vars.css": path.join(__dirname, "src", "vars.css")
     }
   }
 };

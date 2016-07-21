@@ -37,10 +37,10 @@ describe("generator-wrr:app", function () {
       "web_modules/.gitkeep",
 
       "webpack-loaders/preprocess-loader.js",
-      "css-external/cssvars.json",
       "public/robots.txt",
       "public/user.json",
 
+      "src/vars.css",
       "src/client.jsx",
       "src/routes.js",
 

@@ -1,3 +1,5 @@
+@value color-black from "vars.css";
+
 .root {
   display: block;
   padding: 20px;
@@ -8,7 +10,7 @@
 }
 
 .content a {
-  color: var(--color-black);
+  color: color-black;
 }
 
 .content a:hover {
@@ -39,7 +41,7 @@
 }
 
 .link {
-  color: var(--color-black);
+  color: color-black;
 }
 
 .link:hover {
