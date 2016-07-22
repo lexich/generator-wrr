@@ -8,30 +8,24 @@ const mocha = require("gulp-mocha");
 const nsp = require("gulp-nsp");
 const plumber = require("gulp-plumber");
 
-gulp.task("static", function () {
-  return gulp.src("**/*.js")
+gulp.task("static",
+  ()=> gulp.src("**/*.js")
     .pipe(excludeGitignore())
     .pipe(eslint())
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
+    .pipe(eslint.failAfterError()));
 
-gulp.task("nsp", function (cb) {
-  nsp({ package: path.resolve("package.json") }, cb);
-});
+gulp.task("nsp",
+  (cb)=> nsp({ package: path.resolve("package.json") }, cb));
 
-gulp.task("test", function (cb) {
+gulp.task("test", (cb)=> {
   let mochaErr;
 
   gulp.src("test/**/*.js")
     .pipe(plumber())
     .pipe(mocha({ reporter: "spec" }))
-    .on("error", function (err) {
-      mochaErr = err;
-    })
-    .on("end", function () {
-      cb(mochaErr);
-    });
+    .on("error", (err)=> (mochaErr = err))
+    .on("end", ()=> cb(mochaErr));
 });
 
 

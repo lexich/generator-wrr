@@ -1,4 +1,5 @@
 "use strict";
+/* eslint prefer-template: 0 prefer-arrow-callback: 0 */
 const yeoman = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
@@ -32,12 +33,12 @@ module.exports = yeoman.Base.extend({
       (name)=> isDirectory(pathPages, name));
 
     if (!components.length) {
-      const error = yosay(`There aren't any available component for overwrite`);
+      const error = yosay("There aren't any available component for overwrite");
       return done(error);
     }
 
     if (!pages.length) {
-      const error = yosay(`There aren't any available pages`);
+      const error = yosay("There aren't any available pages");
       return done(error);
     }
 

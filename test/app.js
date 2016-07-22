@@ -5,8 +5,8 @@ const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
 const yeoman = require("yeoman-generator");
 
-describe("generator-wrr:app", function () {
-  before(function (done) {
+describe("generator-wrr:app", ()=> {
+  before(function () {
     this.timeout(10000);
     const self = this;
     self.executeState = 0;
@@ -16,7 +16,7 @@ describe("generator-wrr:app", function () {
       }
     });
 
-    helpers.run(path.join(__dirname, "../generators/app"))
+    return helpers.run(path.join(__dirname, "../generators/app"))
       .withOptions({ skipInstall: true })
       .withPrompts({
         projectname: "test",
@@ -26,7 +26,7 @@ describe("generator-wrr:app", function () {
       .withGenerators([
         [Dummy, "wrr:pure"]
       ])
-      .on("end", done);
+      .toPromise();
   });
 
   it("creates files", function () {

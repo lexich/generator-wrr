@@ -1,4 +1,6 @@
 "use strict";
+/* eslint prefer-arrow-callback: 0 */
+
 const httpProxy = require("http-proxy");
 const nStatic = require("node-static");
 const http = require("http");

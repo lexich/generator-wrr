@@ -1,4 +1,5 @@
 "use strict";
+/* eslint prefer-template: 0 prefer-arrow-callback: 0 */
 const yeoman = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
@@ -34,16 +35,15 @@ module.exports = yeoman.Base.extend({
       ],
       default: "components"
     }];
-    const _typeComponent = isComponent ? "components" :
+    const typeComponentBase = isComponent ? "components" :
       isPage ? "pages" : "";
 
     this.prompt(prompts, function (props) {
       this.props = props;
-      const typeComponent = _typeComponent || props.typeComponent;
+      const typeComponent = typeComponentBase || props.typeComponent;
       this.props.typeComponent = typeComponent;
-      this.props.componentNameBase = _.capitalize(
-        _.camelCase(componentName)
-      );
+      this.props.componentNameBase = _.camelCase(componentName)
+        .replace(/^.{1}/, (ch)=> ch.toUpperCase());
 
       this.props.componentName = this.props.componentNameBase +
         (typeComponent === "pages" ? "Page" : "");

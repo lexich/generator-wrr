@@ -1,19 +1,20 @@
 "use strict";
 /* global describe, it, before */
+/* eslint prefer-arrow-callback: 0 */
 const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
 
 describe("generator-wrr:pure", function () {
-  before(function (done) {
-    helpers.run(path.join(__dirname, "../generators/pure"))
+  before(function () {
+    return helpers.run(path.join(__dirname, "../generators/pure"))
       .withPrompts({
         projectname: "test",
         githubuser: "lexich",
         fullname: "lexich"
       })
       .withOptions({ skipInstall: true })
-      .on("end", done);
+      .toPromise();
   });
 
   it("creates files", function () {
