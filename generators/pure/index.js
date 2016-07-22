@@ -3,7 +3,6 @@ const yeoman = require("yeoman-generator");
 const chalk = require("chalk");
 const yosay = require("yosay");
 const libpath = require("path");
-const _ = require("lodash");
 
 module.exports = yeoman.Base.extend({
   prompting() {
@@ -85,17 +84,6 @@ module.exports = yeoman.Base.extend({
   },
 
   install() {
-    const path = this.templatePath("npm-deps.json");
-    const json = require(path);
-    if (json.devDependencies) {
-      const install = _.map(json.devDependencies,
-        (version, name)=> `${name}@${version}`);
-      this.npmInstall(install, { saveDev: true });
-    }
-    if (json.dependencies) {
-      const install = _.map(json.dependencies,
-        (version, name)=> `${name}@${version}`);
-      this.npmInstall(install, { save: true });
-    }
+    this.npmInstall();
   }
 });

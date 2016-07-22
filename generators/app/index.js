@@ -74,36 +74,32 @@ module.exports = yeoman.Base.extend({
   package() {
     // pure generator
     const end = this.composeWith("wrr:pure", {
-      options: this.options
+      options: Object.assign({}, this.options, {
+        skipInstall: true
+      })
     });
     end.on("end", ()=> {
-      const path = this.destinationPath("package.json");
       try {
-        const packageJSON = JSON.parse(this.read(path));
-        packageJSON.scripts["proxy-build"] =
-          "npm run build && node ./scripts/proxy-server.js";
-        const newPackageJSON = JSON.stringify(packageJSON, null, 2);
-        this.fs.write(path, newPackageJSON);
+        const pathPkgDest = this.destinationPath("package.json");
+        const pathPkgTmpl = this.templatePath("package.json");
+        const json = _.merge(
+          JSON.parse(this.fs.read(pathPkgDest)),
+          JSON.parse(this.fs.read(pathPkgTmpl))
+        );
+
+        this.fs.write(
+          pathPkgDest,
+          JSON.stringify(json, null, 2)
+        );
       } catch (e) {
         this.log("process package.json fails:");
         this.log(e);
+        this.fs.copy(
+          this.templatePath("package.json"),
+          this.destinationPath("package.json")
+        );
       }
+      this.npmInstall();
     });
-  },
-
-  install() {
-    const path = this.templatePath("npm-deps.json");
-    const json = require(path);
-
-    if (json.devDependencies) {
-      const install = _.map(json.devDependencies,
-        (version, name)=> `${name}@${version}`);
-      this.npmInstall(install, { saveDev: true });
-    }
-    if (json.dependencies) {
-      const install = _.map(json.dependencies,
-        (version, name)=> `${name}@${version}`);
-      this.npmInstall(install, { save: true });
-    }
   }
 });
