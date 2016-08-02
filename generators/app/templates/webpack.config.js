@@ -17,6 +17,7 @@ const utilities = require("postcss-utilities");
 
 const NODE_ENV = process.env.NODE_ENV;
 const PORT = process.env.PORT || 8080;
+const MINIFICATION = process.env.MINIFICATION ? process.env.MINIFICATION : true;
 
 let plugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
@@ -29,29 +30,40 @@ if (NODE_ENV === "production") {
     new ExtractTextPlugin("styles.[contenthash].css", {
       disable: false,
       allChunks: true
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      output: {
-        semicolons: false
-      }
-    }),
-    new CompressionPlugin({
-      asset: "[path].gz[query]",
-      algorithm: "gzip",
-      test: /\.(js|html|css|svg)$/,
-      threshold: 10240,
-      minRatio: 0.8
     })
   );
+
+  if (MINIFICATION) {
+    plugins = plugins.concat([
+      new webpack.optimize.UglifyJsPlugin({
+        compressor: {
+          screw_ie8: true,
+          warnings: false,
+        },
+        output: {
+          semicolons: false
+        }
+      }),
+      new CompressionPlugin({
+        asset: "[path].gz[query]",
+        algorithm: "gzip",
+        test: /\.(js|html|css|svg)$/,
+        threshold: 10240,
+        minRatio: 0.8
+      })
+    ]);
+  }
 }
 
-plugins = plugins.concat(new HtmlWebpackPlugin({
-  template: "./template.html"
-}));
+plugins = plugins.concat([
+  new HtmlWebpackPlugin({
+    template: "./template.html"
+  }),
+  new HtmlWebpackPlugin({
+    template: "./template.html",
+    filename: "template.tmpl"
+  })
+]);
 
 const devtool = NODE_ENV === "production" ? "source-map" : "eval-source-map";
 

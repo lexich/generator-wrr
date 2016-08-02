@@ -34,14 +34,16 @@ describe("generator-wrr:app", ()=> {
     assert.file([
       "template.html",
       "webpack.config.js",
+      "static.webpack.config.js",
       "web_modules/.gitkeep",
 
       "webpack-loaders/preprocess-loader.js",
       "public/robots.txt",
-      "public/user.json",
+      "public/fixtures/user.json",
 
       "src/vars.css",
       "src/client.jsx",
+      "src/static.jsx",
       "src/routes.js",
 
       "src/constants.js",

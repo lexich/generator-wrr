@@ -1,6 +1,6 @@
 
 export default {
-  url: "/user.json",
+  url: "fixtures/user.json",
   transformer(d) {
     return d || { name: "" };
   }

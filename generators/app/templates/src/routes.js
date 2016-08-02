@@ -12,7 +12,7 @@ export default function routes({ dispatch }) {
     indexRoute: {
       component: IndexPage,
       onEnter(state, replaceState, cb) {
-        dispatch(rest.actions.apiUser(cb));
+        dispatch(rest.actions.apiUser.sync(cb));
       }
     },
     childRoutes: [{

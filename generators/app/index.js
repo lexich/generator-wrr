@@ -70,6 +70,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath("webpack.config.js"),
       this.destinationPath("webpack.config.js")
     );
+    this.copy(
+      this.templatePath("static.webpack.config.js"),
+      this.destinationPath("static.webpack.config.js")
+    );
   },
 
   package() {
