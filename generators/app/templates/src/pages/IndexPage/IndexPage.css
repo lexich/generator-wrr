@@ -1,4 +1,5 @@
 @value color-grey, color-black from "vars.css";
+
 .root {
   width: 700px;
   margin: 0 auto;

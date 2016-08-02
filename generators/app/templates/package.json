@@ -1,5 +1,8 @@
 {
   "scripts": {
+    "build": "rm -rf ./dist && mkdir dist && cp -r ./public/* ./dist/ && NODE_ENV=production node_modules/.bin/webpack --process",
+    "start": "npm run server",
+    "server": "NODE_ENV=develop node_modules/.bin/webpack-dev-server --process --hot --content-base public",
     "proxy-build": "npm run build && node ./scripts/proxy-server.js",
     "static-build": "rm -rf build && npm run build && node_modules/.bin/webpack --config static.webpack.config.js && node ./build/static.bundle.js"
   },
