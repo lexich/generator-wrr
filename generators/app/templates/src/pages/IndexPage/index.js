@@ -1,7 +1,8 @@
-import IndexPage from "./IndexPage";
+"use strict";
+
 import { increment, decrement } from "actions/index_page";
 import { connect } from "react-redux";
-
+import IndexPage from "./IndexPage";
 
 function mapStateToProps(state) {
   return {

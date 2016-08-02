@@ -29,7 +29,7 @@ const reducer = combineReducers({ ...rest.reducers, ...reducers });
 const midleware = [applyMiddleware(reduxError, thunk)];
 
 
-const finalCreateStore = compose.apply(null, midleware)(createStore);
+const finalCreateStore = compose(...midleware)(createStore);
 
 
 const config = routes(finalCreateStore(reducer));
@@ -100,9 +100,9 @@ const writer = new Writer();
 
 urls.forEach((url)=> {
   const store = finalCreateStore(reducer);
-  match({ routes: routes(store), location: url, history }, (error, redirectLocation, renderProps)=> {
+  const matchOpts = { routes: routes(store), location: url, history };
+  match(matchOpts, (error, redirectLocation, renderProps)=> {
     if (!error && !redirectLocation) {
-
       try {
         const html = ReactDom.renderToString(
           <Provider store={store}>

@@ -1,4 +1,5 @@
 "use strict";
+/* eslint import/no-extraneous-dependencies: 0 */
 
 const _ = require("lodash");
 const loaderUtils = require("loader-utils");

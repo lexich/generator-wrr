@@ -51,6 +51,8 @@
     "space-before-function-paren": 0,
     "comma-dangle": 0,
     "arrow-spacing": [2, { "before": false, "after": true }],
-    "import/no-unresolved": 0
+    "import/no-unresolved": 0,
+    "react/require-extension": 0,
+    "import/no-extraneous-dependencies": 0
   }
 }

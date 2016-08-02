@@ -39,6 +39,7 @@ let DevTools;
 import { createDevTools, persistState } from "redux-devtools";
 import LogMonitor from "redux-devtools-log-monitor";
 import DockMonitor from "redux-devtools-dock-monitor";
+
 if (DEBUG) {
   DevTools = createDevTools(
     <DockMonitor
@@ -72,7 +73,7 @@ if (DEBUG) {
 }
 /* <% } %> */
 
-const finalCreateStore = compose.apply(null, midleware)(createStore);
+const finalCreateStore = compose(...midleware)(createStore);
 
 const initialState = window.$REDUX_STATE;
 const store = initialState ? finalCreateStore(reducer, initialState) : finalCreateStore(reducer);

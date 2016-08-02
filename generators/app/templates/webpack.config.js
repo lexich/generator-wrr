@@ -1,6 +1,4 @@
-
-"use strict";
-
+/* eslint import/no-extraneous-dependencies: 0 */
 const webpack = require("webpack");
 const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -76,7 +74,8 @@ if (NODE_ENV !== "production") {
 }
 
 module.exports = {
-  entry, devtool,
+  entry,
+  devtool,
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(NODE_ENV)

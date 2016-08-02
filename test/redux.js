@@ -1,6 +1,6 @@
 "use strict";
 /* global describe, it, before */
-/* eslint prefer-arrow-callback: 0 */
+/* eslint prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0 */
 const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");

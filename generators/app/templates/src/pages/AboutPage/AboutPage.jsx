@@ -3,7 +3,6 @@
 import React, { PropTypes } from "react";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router";
-
 import styleCSS from "./AboutPage.css";
 import aboutMD from "./about.md";
 
