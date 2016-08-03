@@ -34,10 +34,14 @@ const fileExist = (filePath)=> new Promise(
 
 app.use(express.static(rootDir));
 
-app.use("/:page", function(req, res) {
-  const filePath = path.join(rootDir, path.basename(req.params.page));
+app.use("/api/:call", function(req, res) {
+  proxy.web(req, res);
+});
+
+app.use(function(req, res) {
+  const filePath = path.join(rootDir, req.url);
   fileExist(filePath).then(
-    ()=> res.sendFile(filePath).end(),
+    ()=> res.sendFile(filePath),
     ()=> fileExist(`${filePath}.html`).then(
       ()=> res.sendFile(`${filePath}.html`),
       ()=> res.sendFile(path.join(rootDir, "index.html"))
@@ -46,14 +50,6 @@ app.use("/:page", function(req, res) {
     /* eslint no-console: 0 */
     console.error(err)
   );
-});
-
-app.use("/", function(req, res) {
-  res.sendFile(path.join(rootDir, "index.html"));
-});
-
-app.use("/api/:call", function(req, res) {
-  proxy.web(req, res);
 });
 
 app.listen(PORT, function () {

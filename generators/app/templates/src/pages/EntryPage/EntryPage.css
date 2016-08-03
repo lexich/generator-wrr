@@ -1,0 +1,17 @@
+@value color-black from "vars.css";
+
+.root {
+  display: block;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.home {
+  float: right;
+  padding: 10px 0;
+  color: color-black;
+}
+
+.home:hover {
+  text-decoration: none;
+}

@@ -54,14 +54,32 @@ if (NODE_ENV === "production") {
   }
 }
 
+
+function HtmlWebpackPluginFix() {}
+HtmlWebpackPluginFix.prototype.apply = (compiler)=> {
+  compiler.plugin("compilation", (compilation)=> {
+    compilation.plugin("html-webpack-plugin-before-html-processing", (data, cb)=> {
+      if (data && data.assets) {
+        data.assets.css &&
+          (data.assets.css = data.assets.css.map((p)=> `/${p}`));
+        data.assets.js &&
+          (data.assets.js = data.assets.js.map((p)=> `/${p}`));
+      }
+      cb(null, data);
+    });
+  });
+};
+
 plugins = plugins.concat([
+  new HtmlWebpackPluginFix(),
   new HtmlWebpackPlugin({
     template: "./template.html"
   }),
   new HtmlWebpackPlugin({
     template: "./template.html",
     filename: "template.tmpl"
-  })
+  }),
+
 ]);
 
 const devtool = NODE_ENV === "production" ? "source-map" : "eval-source-map";

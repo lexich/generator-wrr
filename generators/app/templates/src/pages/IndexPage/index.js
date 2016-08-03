@@ -7,7 +7,8 @@ import IndexPage from "./IndexPage";
 function mapStateToProps(state) {
   return {
     user: state.apiUser.data,
-    score: state.index_page.score
+    score: state.index_page.score,
+    links: state.apiEntries.data
   };
 }
 

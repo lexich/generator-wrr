@@ -40,6 +40,9 @@ describe("generator-wrr:app", ()=> {
 
       "webpack-loaders/preprocess-loader.js",
       "public/robots.txt",
+
+      "public/fixtures/entries.json",
+      "public/fixtures/entries/test.json",
       "public/fixtures/user.json",
 
       "src/vars.css",
@@ -71,8 +74,14 @@ describe("generator-wrr:app", ()=> {
       "src/pages/IndexPage/IndexPage.Hello.jsx",
       "src/pages/IndexPage/throne.jpg",
 
+      "src/pages/EntryPage/EntryPage.css",
+      "src/pages/EntryPage/EntryPage.jsx",
+      "src/pages/EntryPage/index.js",
+
       "src/rest.js",
       "src/rest/user.js",
+      "src/rest/entries.js",
+      "src/rest/entry.js",
       "src/utils/applyStyle.jsx"
     ]);
   });

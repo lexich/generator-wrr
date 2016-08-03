@@ -14,6 +14,12 @@ export default class IndexPage extends React.Component {
     }),
     score: PropTypes.number.isRequired,
     style: PropTypes.object.isRequired,
+    links: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      })
+    ).isRequired,
     increment: PropTypes.func.isRequired,
     decrement: PropTypes.func.isRequired
   };
@@ -21,7 +27,18 @@ export default class IndexPage extends React.Component {
     style: styleCSS
   };
   render() {
-    const { user: { name }, score, style, increment, decrement } = this.props;
+    const {
+      user: { name },
+      score, style, increment, decrement, links
+    } = this.props;
+    const Links = links.map(({ title, name })=> (
+      <li key={name} >
+        <Link className={style.entry} to={`/entry/${name}`}>
+          { title }
+        </Link>
+      </li>));
+
+
     return (
       <div className={style.root}>
         <h1 className={style.title}>
@@ -40,6 +57,10 @@ export default class IndexPage extends React.Component {
         </div>
         <br/>
         <Link className={style.aboutpage} to={"about"}>Go to about page</Link>
+        <ul className={style.entry_list} >
+          <li>Entries</li>
+          { Links }
+        </ul>
         <ReactMarkdown className={style.content} source={readMe} />
       </div>
     );

@@ -1,5 +1,6 @@
 import routes from "./routes";
 import reduce from "lodash/reduce";
+import memoize from "lodash/memoize";
 import path from "path";
 
 import React from "react";
@@ -14,6 +15,7 @@ import thunk from "redux-thunk";
 import reduxError from "redux-error";
 import { Provider } from "react-redux";
 import fs from "fs";
+import mkdirp from "mkdirp";
 
 // redux-api
 import rest from "./rest";
@@ -35,12 +37,25 @@ const finalCreateStore = compose(...midleware)(createStore);
 const config = routes(finalCreateStore(reducer));
 const rootPath = config.path;
 
-const urls = reduce(config.childRoutes, (memo, route)=> {
-  if (route && route.path) {
-    memo[memo.length] = path.join(rootPath, route.path);
+function processPath(filePath) {
+  if (!filePath) {
+    return [];
+  } else if (filePath === "/entry/:name") {
+    const allEntries = ["test"];
+    return allEntries.map((name)=> filePath.replace(":name", name));
+  } else if (filePath) {
+    return [path.join(rootPath, filePath)];
+  } else {
+    return [];
   }
-  return memo;
-}, (config.indexRoute ? [rootPath] : []));
+}
+
+const urls = reduce(config.childRoutes,
+  (memo, route)=> memo.concat(processPath(route && route.path)),
+  (config.indexRoute ? [rootPath] : [])
+);
+
+const mkdirpSync = memoize((filePath)=> mkdirp.sync(filePath));
 
 class Writer {
   /* eslint no-underscore-dangle: 0 */
@@ -57,20 +72,18 @@ class Writer {
     const json = JSON.stringify(state || {});
     return this._template.replace(
       `<div id="react-main-mount"></div>`,
-      `<script>window.$REDUX_STATE = ${json}</script>
-      <div id="react-main-mount">${html}</div>
-      `
+      `<div id="react-main-mount">${html}</div>
+      <script>window.$REDUX_STATE = ${json}</script>`
     );
   }
   write(url, html, state) {
     /* eslint prefer-template: 0 */
     const name = url === rootPath ?
-    "index.html" :
-    url
-      .replace(/^\//, "")
-      .replace(/\//g, "_") + ".html";
+      "index.html" : url.replace(/^\//, "") + ".html";
 
     const filePath = path.join(this._distDir, name);
+    mkdirpSync(path.dirname(filePath));
+
     fs.writeFileSync(filePath, this.template(html, state));
     /* eslint no-console: 0 */
     console.log(`Write:`, filePath);

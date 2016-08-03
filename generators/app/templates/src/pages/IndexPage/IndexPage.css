@@ -43,6 +43,23 @@
   text-decoration: none;
 }
 
+.entry_list {
+  float: left;
+  text-align: left;
+}
+
+.entry_list > li {
+  text-transform: capitalize;
+}
+
+.entry {
+  color: color-black;
+}
+
+.entry:hover {
+  text-decoration: none;
+}
+
 .content {
   margin-top: 60px;
   padding: 20px;
