@@ -1,6 +1,7 @@
 "use strict";
 /* global describe, it, before */
-/* eslint prefer-arrow-callback: 0 import/no-extraneous-dependencies: 0 */
+/* eslint prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0, quotes: 0 */
+
 const path = require("path");
 const assert = require("yeoman-assert");
 const helpers = require("yeoman-test");
@@ -37,14 +38,34 @@ describe("generator-wrr:component", function () {
         "src/pages/TestComponentPage/TestComponentPage.css",
         "src/pages/TestComponentPage/index.js"
       ]);
-      assert.fileContent("src/pages/TestComponentPage/TestComponentPage.jsx",
-        "export default class TestComponentPage");
-      assert.fileContent("src/pages/TestComponentPage/TestComponentPage.jsx",
-        "      <div className={className}>");
-      assert.fileContent("src/pages/TestComponentPage/TestComponentPage.css",
+      assert.fileContent(
+        "src/pages/TestComponentPage/TestComponentPage.jsx",
+        "export default class TestComponentPage"
+      );
+      assert.fileContent(
+        "src/pages/TestComponentPage/TestComponentPage.jsx",
+        "      <div className={className}>"
+      );
+      assert.fileContent(
+        "src/pages/TestComponentPage/TestComponentPage.jsx",
+        `import Helmet from "react-helmet";`
+      );
+      assert.fileContent(
+        "src/pages/TestComponentPage/TestComponentPage.jsx",
+        `<Helmet title={"TestComponentPage"} />`
+      );
+      assert.fileContent(
+        "src/pages/TestComponentPage/TestComponentPage.css",
         ".root"
       );
-      assert.fileContent("src/pages/TestComponentPage/index.js", "react-redux");
+      assert.fileContent(
+        "src/pages/TestComponentPage/index.js",
+        "react-redux"
+      );
+      assert.fileContent(
+        "src/pages/TestComponentPage/TestComponentPage.jsx",
+        `import Helmet from "react-helmet";`
+      );
     });
   });
 
@@ -62,14 +83,26 @@ describe("generator-wrr:component", function () {
         "src/components/TestComponent/TestComponent.css",
         "src/components/TestComponent/index.js"
       ]);
-      assert.fileContent("src/components/TestComponent/TestComponent.jsx",
-        "export default class TestComponent");
-      assert.fileContent("src/components/TestComponent/TestComponent.jsx",
-        "      <div className={className}>");
-      assert.fileContent("src/components/TestComponent/TestComponent.css",
+      assert.fileContent(
+        "src/components/TestComponent/TestComponent.jsx",
+        "export default class TestComponent"
+      );
+      assert.fileContent(
+        "src/components/TestComponent/TestComponent.jsx",
+        "      <div className={className}>"
+      );
+      assert.noFileContent(
+        "src/components/TestComponent/TestComponent.jsx",
+        "Helmet"
+      );
+      assert.fileContent(
+        "src/components/TestComponent/TestComponent.css",
         ".root"
       );
-      assert.noFileContent("src/components/TestComponent/index.js", "react-redux");
+      assert.noFileContent(
+        "src/components/TestComponent/index.js",
+        "react-redux"
+      );
     });
   });
 });

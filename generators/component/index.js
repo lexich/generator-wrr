@@ -61,10 +61,14 @@ module.exports = yeoman.Base.extend({
       this.destinationPath(libpath.join(dir, componentName + ".css"))
     );
 
-    this.copy(
-      this.templatePath("component.jsx"),
-      this.destinationPath(libpath.join(dir, componentName + ".jsx"))
-    );
+    const cpath = typeComponent === "pages" ? "page.jsx" :
+                  typeComponent === "components" ? "component.jsx" : "";
+    if (cpath) {
+      this.copy(
+        this.templatePath(cpath),
+        this.destinationPath(libpath.join(dir, componentName + ".jsx"))
+      );
+    }
 
 
     const tpath = typeComponent === "pages" ? "page.ejs" :
