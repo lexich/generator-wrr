@@ -25,6 +25,11 @@ module.exports = {
     }],
     loaders: [
       {
+        test: /\.(js)$/,
+        loaders: ["babel"],
+        include: path.join(__dirname, "template.js")
+      },
+      {
         test: /\.(js|jsx)$/,
         loaders: ["babel"],
         include: path.join(__dirname, "src")

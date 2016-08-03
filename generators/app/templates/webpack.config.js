@@ -6,6 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 // postcss
 const cssvariables = require("postcss-css-variables");
@@ -25,12 +26,31 @@ let plugins = [
 ];
 
 if (NODE_ENV === "production") {
-  plugins = plugins.concat(
+  plugins = plugins.concat([
     new ExtractTextPlugin("styles.[contenthash].css", {
       disable: false,
       allChunks: true
+    }),
+    new FaviconsWebpackPlugin({
+      logo: path.join(__dirname, "logo.png"),
+      emitStats: false,
+      persistentCache: true,
+      inject: true,
+      prefix: "/icons/",
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        yandex: false,
+        windows: false
+      }
     })
-  );
+  ]);
 
   if (MINIFICATION) {
     plugins = plugins.concat([
@@ -54,32 +74,10 @@ if (NODE_ENV === "production") {
   }
 }
 
-
-function HtmlWebpackPluginFix() {}
-HtmlWebpackPluginFix.prototype.apply = (compiler)=> {
-  compiler.plugin("compilation", (compilation)=> {
-    compilation.plugin("html-webpack-plugin-before-html-processing", (data, cb)=> {
-      if (data && data.assets) {
-        data.assets.css &&
-          (data.assets.css = data.assets.css.map((p)=> `/${p}`));
-        data.assets.js &&
-          (data.assets.js = data.assets.js.map((p)=> `/${p}`));
-      }
-      cb(null, data);
-    });
-  });
-};
-
 plugins = plugins.concat([
-  new HtmlWebpackPluginFix(),
   new HtmlWebpackPlugin({
-    template: "./template.html"
-  }),
-  new HtmlWebpackPlugin({
-    template: "./template.html",
-    filename: "template.tmpl"
-  }),
-
+    template: "./template.js"
+  })
 ]);
 
 const devtool = NODE_ENV === "production" ? "source-map" : "eval-source-map";
@@ -111,9 +109,14 @@ module.exports = {
     }],
     loaders: [
       {
+        test: /\.(js)$/,
+        loaders: ["babel"],
+        include: path.join(__dirname, "template.js")
+      },
+      {
         test: /\.(js|jsx)$/,
         loaders: ["react-hot", "babel"],
-        include: path.join(__dirname, "src")
+        include: path.join(__dirname, "src"),
       },
       {
         /* eslint max-len: 0 */

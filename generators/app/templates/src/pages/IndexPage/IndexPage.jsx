@@ -1,6 +1,7 @@
 "use strict";
 
 import React, { PropTypes } from "react";
+import Helmet from "react-helmet";
 import ReactMarkdown from "react-markdown";
 import { Link } from "react-router";
 import styleCSS from "./IndexPage.css";
@@ -38,9 +39,14 @@ export default class IndexPage extends React.Component {
         </Link>
       </li>));
 
-
     return (
       <div className={style.root}>
+        <Helmet
+          title={"Index page"}
+          meta={[
+            { property: "og:title", content: "Index page" }
+          ]}
+        />
         <h1 className={style.title}>
           Welcome to <b>W</b>ebpack<b>R</b>eact<b>R</b>edux generator!
         </h1>

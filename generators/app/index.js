@@ -55,6 +55,11 @@ module.exports = yeoman.Base.extend({
       this.destinationPath("scripts")
     );
 
+    this.fs.copy(
+      this.templatePath("logo.png"),
+      this.destinationPath("logo.png")
+    );
+
     // overwrite client.jsx
     this.fs.copy(
       this.templatePath("src/client.jsx"),
@@ -63,8 +68,8 @@ module.exports = yeoman.Base.extend({
 
     // configs
     this.fs.copy(
-      this.templatePath("template.html"),
-      this.destinationPath("template.html")
+      this.templatePath("template.js"),
+      this.destinationPath("template.js")
     );
     this.copy(
       this.templatePath("webpack.config.js"),

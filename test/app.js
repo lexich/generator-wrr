@@ -33,7 +33,8 @@ describe("generator-wrr:app", ()=> {
   it("creates files", function () {
     assert(this.executeState === 1);
     assert.file([
-      "template.html",
+      "template.js",
+      "logo.png",
       "webpack.config.js",
       "static.webpack.config.js",
       "web_modules/.gitkeep",

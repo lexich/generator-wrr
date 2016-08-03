@@ -16,6 +16,8 @@ import reduxError from "redux-error";
 import { Provider } from "react-redux";
 import fs from "fs";
 import mkdirp from "mkdirp";
+import { Document } from "../template";
+import Helmet from "react-helmet";
 
 // redux-api
 import rest from "./rest";
@@ -60,23 +62,42 @@ const mkdirpSync = memoize((filePath)=> mkdirp.sync(filePath));
 class Writer {
   /* eslint no-underscore-dangle: 0 */
   constructor(
-    templateName="template.tmpl",
-    distDir=path.join(__dirname, "..", "dist")
+    distDir=path.join(__dirname, "..", "dist"),
+    manifestName="manifest.json",
+    favicons=path.join("icons", ".cache")
   ) {
     this._distDir = distDir;
-    this._template = fs.readFileSync(
-      path.join(distDir, templateName), "utf-8").toString();
-  }
-  template(html, state) {
-    /* eslint quotes: 0 */
-    const json = JSON.stringify(state || {});
-    return this._template.replace(
-      `<div id="react-main-mount"></div>`,
-      `<div id="react-main-mount">${html}</div>
-      <script>window.$REDUX_STATE = ${json}</script>`
+    this.favicons = this.initFavicons(
+      path.join(distDir, favicons)
     );
+    const manifest = this.initManifest(
+      path.join(distDir, manifestName)
+    );
+
+    this.js = manifest.filter(
+      (item)=> /\.js$/.test(item));
+    this.css = manifest.filter(
+      (item)=> /\.css$/.test(item));
   }
-  write(url, html, state) {
+  initManifest(manifestPath) {
+    try {
+      return reduce(JSON.parse(fs.readFileSync(manifestPath)),
+        (memo, val)=> memo.concat(val), []);
+    } catch (e) {
+      console.error(e);
+    }
+    return [];
+  }
+  initFavicons(faviconPath) {
+    try {
+      const f = JSON.parse(fs.readFileSync(faviconPath));
+      return f.result.html.join("");
+    } catch (e) {
+      console.error(e);
+    }
+    return "";
+  }
+  write(url, html) {
     /* eslint prefer-template: 0 */
     const name = url === rootPath ?
       "index.html" : url.replace(/^\//, "") + ".html";
@@ -84,9 +105,14 @@ class Writer {
     const filePath = path.join(this._distDir, name);
     mkdirpSync(path.dirname(filePath));
 
-    fs.writeFileSync(filePath, this.template(html, state));
+    const data = ReactDom.renderToStaticMarkup(
+      <Document html={html} head={Helmet.rewind()} />
+    )
+      .replace("</head>", `${this.favicons}</head>`)
+      .replace(/data-react-helmet="true"/g, "");
+    fs.writeFileSync(filePath, data);
     /* eslint no-console: 0 */
-    console.log(`Write:`, filePath);
+    console.log("Write:", filePath);
   }
 }
 
@@ -117,14 +143,27 @@ urls.forEach((url)=> {
   match(matchOpts, (error, redirectLocation, renderProps)=> {
     if (!error && !redirectLocation) {
       try {
-        const html = ReactDom.renderToString(
+        const json = JSON.stringify(store.getState());
+        const scripts = [{
+          type: "text/javascript",
+          innerHTML: `window.$REDUX_STATE = ${json}`
+        }].concat(writer.js.map((jspath)=> ({
+          type: "text/javascript",
+          src: `/${jspath}`
+        })));
+        const links = writer.css.map((csspath)=> ({
+          rel: "stylesheet",
+          href: `/${csspath}`
+        }));
+        const html = ReactDom.renderToStaticMarkup(
           <Provider store={store}>
             <div className="ApplicationRoot">
               <RouterContext {...renderProps} />
+              <Helmet script={scripts} link={links} />
             </div>
           </Provider>
         );
-        writer.write(url, html, store.getState());
+        writer.write(url, html);
       } catch (e) {
         /* eslint no-console: 0 */
         console.error(`Error: ${url}`, e);
