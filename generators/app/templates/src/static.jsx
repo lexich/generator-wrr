@@ -18,6 +18,7 @@ import fs from "fs";
 import mkdirp from "mkdirp";
 import { Document } from "../template";
 import Helmet from "react-helmet";
+import sitemap from "sitemap";
 
 // redux-api
 import rest from "./rest";
@@ -31,7 +32,6 @@ import reducers from "./reducers";
 const reducer = combineReducers({ ...rest.reducers, ...reducers });
 
 const midleware = [applyMiddleware(reduxError, thunk)];
-
 
 const finalCreateStore = compose(...midleware)(createStore);
 
@@ -97,19 +97,22 @@ class Writer {
     }
     return "";
   }
-  write(url, html) {
+  writeFile(url, html) {
     /* eslint prefer-template: 0 */
     const name = url === rootPath ?
       "index.html" : url.replace(/^\//, "") + ".html";
-
-    const filePath = path.join(this._distDir, name);
-    mkdirpSync(path.dirname(filePath));
 
     const data = ReactDom.renderToStaticMarkup(
       <Document html={html} head={Helmet.rewind()} />
     )
       .replace("</head>", `${this.favicons}</head>`)
       .replace(/data-react-helmet="true"/g, "");
+
+    return this.write(name, data);
+  }
+  write(name, data) {
+    const filePath = path.join(this._distDir, name);
+    mkdirpSync(path.dirname(filePath));
     fs.writeFileSync(filePath, data);
     /* eslint no-console: 0 */
     console.log("Write:", filePath);
@@ -163,7 +166,7 @@ urls.forEach((url)=> {
             </div>
           </Provider>
         );
-        writer.write(url, html);
+        writer.writeFile(url, html);
       } catch (e) {
         /* eslint no-console: 0 */
         console.error(`Error: ${url}`, e);
@@ -171,3 +174,17 @@ urls.forEach((url)=> {
     }
   });
 });
+
+const lastmodISO = new Date().toISOString();
+const xmlData = sitemap.createSitemap({
+  hostname: "http://example.com",
+  cacheTime: 600000,
+  urls: urls.map((url)=> ({
+    url,
+    changefreq: "monthly",
+    priority: (url === rootPath ? 1 : 0.5),
+    lastmodISO
+  }))
+}).toString();
+
+writer.write("sitemap.xml", xmlData);
