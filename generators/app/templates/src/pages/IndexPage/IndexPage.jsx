@@ -27,11 +27,15 @@ export default class IndexPage extends React.Component {
   static defaultProps = {
     style: styleCSS
   };
+  static contextTypes = {
+    __: PropTypes.func
+  };
   render() {
     const {
       user: { name },
       score, style, increment, decrement, links
     } = this.props;
+    const { __ } = this.context;
     const Links = links.map(({ title, name })=> (
       <li key={name} >
         <Link className={style.entry} to={`/entry/${name}`}>
@@ -42,29 +46,31 @@ export default class IndexPage extends React.Component {
     return (
       <div className={style.root}>
         <Helmet
-          title={"Index page"}
+          title={__("Index page")}
           meta={[
-            { property: "og:title", content: "Index page" }
+            { property: "og:title", content: __("Index page") }
           ]}
         />
         <h1 className={style.title}>
-          Welcome to <b>W</b>ebpack<b>R</b>eact<b>R</b>edux generator!
+          { __.html("Welcome to <b>W</b>ebpack<b>R</b>eact<b>R</b>edux generator") }
         </h1>
         <div className={style.throne}>
-          <Hello className={style.userpic}/>
+          <Hello className={style.userpic} />
         </div>
         <p className={style.description}>
-          Hello <span className={style.username}>{name}!</span>
+          {__("Hello")} <span className={style.username}>{name}!</span>
         </p>
         <div className={style.score}>
-          Score: { score }&nbsp;
+          {__("Score")}: { score }&nbsp;
           <button onClick={increment}>+</button>
           <button onClick={decrement}>-</button>
         </div>
-        <br/>
-        <Link className={style.aboutpage} to={"about"}>Go to about page</Link>
+        <br />
+        <Link className={style.aboutpage} to={"about"}>
+          {__("About page")}
+        </Link>
         <ul className={style.entry_list} >
-          <li>Entries</li>
+          <li>{__("Entries")}</li>
           { Links }
         </ul>
         <ReactMarkdown className={style.content} source={readMe} />

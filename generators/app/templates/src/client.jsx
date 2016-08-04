@@ -19,6 +19,20 @@ import reduxError from "redux-error";
 import rest from "./rest";
 import "isomorphic-fetch";
 
+// localization
+import initI18n from "react-i18n-universal/lib/redux";
+import { getCookie, setCookie } from "./utils/cookie";
+import locales from "./localization";
+
+const i18n = initI18n({
+  reducerName: "i18n",
+  locales,
+  defaultLocale: getCookie("language") || "en",
+  cb(locale) {
+    setCookie("language", locale);
+  }
+});
+
 rest.use("fetch",
   (url, opts)=> fetch(url, opts)
     .then((r)=> {
@@ -56,7 +70,11 @@ if (DEBUG) {
 import reducers from "./reducers";
 
 // Prepare store
-const reducer = combineReducers({ ...rest.reducers, ...reducers });
+const reducer = combineReducers({
+  ...rest.reducers,
+  ...reducers,
+  i18n: i18n.reducer
+});
 
 let midleware = [applyMiddleware(reduxError, thunk)];
 
@@ -87,10 +105,12 @@ const el = document.getElementById(
 
 render(
   <Provider store={store}>
-    <div className="ApplicationRoot">
-      <Router key="ta-app" history={history} children={childRoutes} />
-      {DevTools ? <DevTools /> : null}
-    </div>
+    <i18n.I18N>
+      <div className="ApplicationRoot">
+        <Router key="ta-app" history={history} children={childRoutes} />
+        {DevTools ? <DevTools /> : null}
+      </div>
+    </i18n.I18N>
   </Provider>,
   el
 );

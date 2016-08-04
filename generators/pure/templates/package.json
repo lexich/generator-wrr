@@ -3,7 +3,7 @@
   "description": "",
   "version": "0.0.0",
   "repository": "http://github.com/<%= props.githubuser %>/<%= props.projectname %>",
-  "main": "src/client.jsx",
+  "main": "index.js",
   "license": "MIT",
   "scripts": {
     "test": "npm run eslint && npm run stylelint",

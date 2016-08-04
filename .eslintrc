@@ -53,6 +53,7 @@
     "arrow-spacing": [2, { "before": false, "after": true }],
     "import/no-unresolved": 0,
     "react/require-extension": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "import/imports-first": 0
   }
 }

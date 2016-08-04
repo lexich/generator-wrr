@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.title {
+  font-size: 1.7em;
+}
+
 .title b {
   font-weight: bold;
 }

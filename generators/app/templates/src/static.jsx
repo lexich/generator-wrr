@@ -23,20 +23,22 @@ import sitemap from "sitemap";
 // redux-api
 import rest from "./rest";
 
+// localization
+import initI18n from "react-i18n-universal/lib/redux";
+import locales from "./localization";
+
 const history = useRouterHistory(createMemoryHistory)({ queryKey: false });
 
 
 import reducers from "./reducers";
 
-// Prepare store
-const reducer = combineReducers({ ...rest.reducers, ...reducers });
 
 const midleware = [applyMiddleware(reduxError, thunk)];
 
 const finalCreateStore = compose(...midleware)(createStore);
 
 
-const config = routes(finalCreateStore(reducer));
+const config = routes(finalCreateStore(combineReducers({})));
 const rootPath = config.path;
 
 function processPath(filePath) {
@@ -97,7 +99,7 @@ class Writer {
     }
     return "";
   }
-  writeFile(url, html) {
+  writeFile(url, html, locale) {
     /* eslint prefer-template: 0 */
     const name = url === rootPath ?
       "index.html" : url.replace(/^\//, "") + ".html";
@@ -108,10 +110,10 @@ class Writer {
       .replace("</head>", `${this.favicons}</head>`)
       .replace(/data-react-helmet="true"/g, "");
 
-    return this.write(name, data);
+    return this.write(name, data, locale);
   }
-  write(name, data) {
-    const filePath = path.join(this._distDir, name);
+  write(name, data, locale="") {
+    const filePath = path.join(this._distDir, locale, name);
     mkdirpSync(path.dirname(filePath));
     fs.writeFileSync(filePath, data);
     /* eslint no-console: 0 */
@@ -140,40 +142,64 @@ rest.use("fetch", (url)=> {
 
 const writer = new Writer();
 
-urls.forEach((url)=> {
-  const store = finalCreateStore(reducer);
-  const matchOpts = { routes: routes(store), location: url, history };
-  match(matchOpts, (error, redirectLocation, renderProps)=> {
-    if (!error && !redirectLocation) {
-      try {
-        const json = JSON.stringify(store.getState());
-        const scripts = [{
-          type: "text/javascript",
-          innerHTML: `window.$REDUX_STATE = ${json}`
-        }].concat(writer.js.map((jspath)=> ({
-          type: "text/javascript",
-          src: `/${jspath}`
-        })));
-        const links = writer.css.map((csspath)=> ({
-          rel: "stylesheet",
-          href: `/${csspath}`
-        }));
-        const html = ReactDom.renderToStaticMarkup(
-          <Provider store={store}>
-            <div className="ApplicationRoot">
-              <RouterContext {...renderProps} />
-              <Helmet script={scripts} link={links} />
-            </div>
-          </Provider>
-        );
-        writer.writeFile(url, html);
-      } catch (e) {
-        /* eslint no-console: 0 */
-        console.error(`Error: ${url}`, e);
-      }
-    }
+
+function generate(defaultLocale="en", multilang=false) {
+  const i18n = initI18n({
+    reducerName: "i18n",
+    locales,
+    defaultLocale
   });
-});
+
+  const reducer = combineReducers({
+    ...rest.reducers,
+    ...reducers,
+    i18n: i18n.reducer
+  });
+
+  urls.forEach((url)=> {
+    // Prepare store
+    const store = finalCreateStore(reducer);
+    const matchOpts = { routes: routes(store), location: url, history };
+    match(matchOpts, (error, redirectLocation, renderProps)=> {
+      if (!error && !redirectLocation) {
+        try {
+          const json = JSON.stringify(store.getState());
+          const scripts = [{
+            type: "text/javascript",
+            innerHTML: `window.$REDUX_STATE = ${json}`
+          }].concat(writer.js.map((jspath)=> ({
+            type: "text/javascript",
+            src: `/${jspath}`
+          })));
+          const links = writer.css.map((csspath)=> ({
+            rel: "stylesheet",
+            href: `/${csspath}`
+          }));
+          const metas = [{
+            "http-equiv": "content-type",
+            content: "text/html; charset=utf-8"
+          }];
+
+          const html = ReactDom.renderToStaticMarkup(
+            <Provider store={store}>
+              <i18n.I18N>
+                <div className="ApplicationRoot">
+                  <RouterContext {...renderProps} />
+                  <Helmet script={scripts} link={links} meta={metas} />
+                </div>
+              </i18n.I18N>
+            </Provider>
+          );
+          writer.writeFile(url, html, multilang ? defaultLocale : "");
+        } catch (e) {
+          /* eslint no-console: 0 */
+          console.error(`Error: ${url}`, e, e.stack);
+        }
+      }
+    });
+  });
+}
+generate("en");
 
 const lastmodISO = new Date().toISOString();
 const xmlData = sitemap.createSitemap({

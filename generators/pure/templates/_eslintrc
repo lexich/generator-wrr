@@ -54,6 +54,7 @@
     "no-confusing-arrow": 0,
     "react/require-extension": 0,
     "import/imports-first": 0,
+    "import/no-unresolved": 0,
     "import/no-extraneous-dependencies": 0
   }
 }

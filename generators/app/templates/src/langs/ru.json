@@ -1,0 +1,12 @@
+{
+  "Index page": "Главная страница",
+  "Welcome to <b>W</b>ebpack<b>R</b>eact<b>R</b>edux generator": "Добро пожаловать в <b>W</b>ebpack<b>R</b>eact<b>R</b>edux генератор",
+  "Hello": "Привет",
+  "Entries": "Записи",
+  "About page": "О проекте",
+  "Score": "Счет",
+  "Main page": "Главная страница",
+  "Press <em>ctrl+h</em> to show redux debug panel and <em>ctrl+q</em> to change it's position.":
+    "Нажмите <em>ctrl+h</em> для показа  redux debug panel и <em>ctrl+q</em> для изменения его позиционирования.",
+  "Entry: %1": "Запись: %1"
+}

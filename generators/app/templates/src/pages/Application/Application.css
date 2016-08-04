@@ -23,3 +23,18 @@
   border: 1px solid color-green;
   border-radius: 5px;
 }
+
+.language {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+.language a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.language a:hover {
+  text-decoration: none;
+}

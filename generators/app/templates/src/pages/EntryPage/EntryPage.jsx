@@ -15,19 +15,25 @@ export default class EntryPage extends React.Component {
   static defaultProps = {
     style: styleCSS
   };
+  static contextTypes = {
+    __: PropTypes.func
+  };
   render() {
     const { style, title, body } = this.props;
+    const { __ } = this.context;
     const className = style.root +
       (this.props.className ? ` ${this.props.className}` : "");
     return (
       <div className={className}>
         <Helmet
-          title={`Entry: ${title}`}
+          title={__("Entry: %1", title)}
           meta={[
-            { property: "og:title", content: `Entry: ${title}` }
+            { property: "og:title", content: __("Entry: %1", title) }
           ]}
         />
-        <Link className={style.home} to={"/"}>Home</Link>
+        <Link className={style.home} to={"/"}>
+          {__("Main page")}
+        </Link>
         <h1>{ title }</h1>
         <p>
           { body }

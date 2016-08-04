@@ -50,6 +50,9 @@ describe("generator-wrr:app", ()=> {
       "src/client.jsx",
       "src/static.jsx",
       "src/routes.js",
+      "src/localization.js",
+
+      "src/langs/ru.json",
 
       "src/constants.js",
       "src/reducers.js",
@@ -63,6 +66,7 @@ describe("generator-wrr:app", ()=> {
       "src/pages/AboutPage/AboutPage.jsx",
       "src/pages/AboutPage/index.js",
       "src/pages/AboutPage/about.md",
+      "src/pages/AboutPage/about.ru.md",
 
       "src/pages/Application/Application.css",
       "src/pages/Application/Application.jsx",
@@ -83,7 +87,7 @@ describe("generator-wrr:app", ()=> {
       "src/rest/user.js",
       "src/rest/entries.js",
       "src/rest/entry.js",
-      "src/utils/applyStyle.jsx"
+      "src/utils/cookie.js"
     ]);
   });
 });

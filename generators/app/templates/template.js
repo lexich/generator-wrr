@@ -40,6 +40,10 @@ function render(templateParams) {
         manifest: templateParams.htmlWebpackPlugin.files.manifest,
         lang: "en"
       }}
+      meta={[{
+        "http-equiv": "content-type",
+        content: "text/html; charset=utf-8"
+      }]}
     />
   );
   return ReactDOM.renderToStaticMarkup(

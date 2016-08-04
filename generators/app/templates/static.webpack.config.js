@@ -13,6 +13,7 @@ module.exports = {
     __dirname: true
   },
   target: "node",
+  devtool: "source-map",
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),

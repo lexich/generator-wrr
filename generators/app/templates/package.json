@@ -17,6 +17,7 @@
     "react-markdown": "2.4.2",
     "react-redux": "4.4.5",
     "react-router": "2.6.1",
+    "react-i18n-universal": "0.0.2",
     "redux": "3.5.2",
     "redux-api": "0.9.9",
     "redux-devtools": "3.3.1",
@@ -24,7 +25,8 @@
     "redux-devtools-log-monitor": "1.0.11",
     "redux-error": "0.0.1",
     "redux-thunk": "2.1.0",
-    "reset.css": "2.0.2"
+    "reset.css": "2.0.2",
+    "wrr-applystyle":"lexich/wrr-applystyle#0.0.2"
   },
   "devDependencies": {
     "autoprefixer": "6.3.7",
