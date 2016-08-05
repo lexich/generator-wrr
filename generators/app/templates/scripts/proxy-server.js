@@ -39,16 +39,18 @@ app.use("/api/:call", function(req, res) {
 });
 
 app.use(function(req, res) {
-  const filePath = path.join(rootDir, req.url);
-  fileExist(filePath).then(
-    ()=> res.sendFile(filePath),
-    ()=> fileExist(`${filePath}.html`).then(
-      ()=> res.sendFile(`${filePath}.html`),
-      ()=> res.sendFile(path.join(rootDir, "index.html"))
-    )
-  ).catch((err)=>
-    /* eslint no-console: 0 */
-    console.error(err)
+  const filePath = path.join(rootDir, req.url).replace(/\/$/, "");
+  fileExist(filePath).then((stat)=>
+    stat.isFile() ?
+      res.sendFile(filePath) :
+      Promise.reject("not file")
+  ).catch(()=>
+    fileExist(`${filePath}.html`)
+      .then((stat)=> stat.isFile() ?
+        res.sendFile(`${filePath}.html`) :
+        Promise.reject(""))
+  ).catch(()=>
+    res.sendFile(path.join(rootDir, "index.html"))
   );
 });
 

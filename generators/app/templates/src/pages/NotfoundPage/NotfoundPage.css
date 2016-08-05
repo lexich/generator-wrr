@@ -1,0 +1,14 @@
+.root {
+  display: block;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -200px;
+  width: 400px;
+  height: 100px;
+  text-align: center;
+}

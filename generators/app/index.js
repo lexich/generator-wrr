@@ -43,6 +43,10 @@ module.exports = yeoman.Base.extend({
       this.destinationPath("src")
     );
     this.directory(
+      this.templatePath("generator"),
+      this.destinationPath("generator")
+    );
+    this.directory(
       this.templatePath("web_modules"),
       this.destinationPath("web_modules")
     );
@@ -70,6 +74,10 @@ module.exports = yeoman.Base.extend({
     this.fs.copy(
       this.templatePath("template.js"),
       this.destinationPath("template.js")
+    );
+    this.fs.copy(
+      this.templatePath("generator.js"),
+      this.destinationPath("generator.js")
     );
     this.copy(
       this.templatePath("webpack.config.js"),

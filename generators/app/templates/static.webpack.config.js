@@ -7,7 +7,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const NODE_ENV = process.env.NODE_ENV;
 
 module.exports = {
-  entry: "./src/static.jsx",
+  entry: "./generator.js",
   node: {
     __filename: true,
     __dirname: true
@@ -26,14 +26,13 @@ module.exports = {
     }],
     loaders: [
       {
-        test: /\.(js)$/,
-        loaders: ["babel"],
-        include: path.join(__dirname, "template.js")
-      },
-      {
         test: /\.(js|jsx)$/,
         loaders: ["babel"],
-        include: path.join(__dirname, "src")
+        include: [
+          path.join(__dirname, "src"),
+          path.join(__dirname, "template.js"),
+          path.join(__dirname, "generator")
+        ]
       },
       {
         /* eslint max-len: 0 */
@@ -48,14 +47,14 @@ module.exports = {
       }, {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loaders: [
-          "file?hash=sha512&digest=hex&name=[name]-[hash].[ext]"
+          "file?hash=sha512&digest=hex&name=/[name]-[hash].[ext]"
         ]
       }, {
         test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file?limit=10000&name=[name]-font-[hash].[ext]"
+        loader: "file?limit=10000&name=/[name]-font-[hash].[ext]"
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+){1}$/,
-        loader: "file?limit=10000&name=[name]-font-[hash].[ext]"
+        loader: "file?limit=10000&name=/[name]-font-[hash].[ext]"
       }, {
         test: /\.json$/,
         loader: "json"

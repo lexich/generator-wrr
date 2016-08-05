@@ -152,14 +152,14 @@ module.exports = {
       }, {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         loaders: [
-          "file?hash=sha512&digest=hex&name=[name]-[hash].[ext]"
+          "file?hash=sha512&digest=hex&name=/[name]-[hash].[ext]"
         ]
       }, {
         test: /\.(eot|ttf|woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file?limit=10000&name=[name]-font-[hash].[ext]"
+        loader: "file?limit=10000&name=/[name]-font-[hash].[ext]"
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+){1}$/,
-        loader: "file?limit=10000&name=[name]-font-[hash].[ext]"
+        loader: "file?limit=10000&name=/[name]-font-[hash].[ext]"
       }, {
         test: /\.json$/,
         loader: "json"

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Application from "./Application";
-import { actionUpdate } from "react-i18n-universal/lib/redux";
+import { browserHistory as history } from "react-router";
 
 function mapStateToProps(state) {
   return {
@@ -8,9 +8,13 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, { location }) {
   return {
-    changeLanguage: (lang)=> dispatch(actionUpdate(lang))
+    changeLanguage: (lang)=> {
+      const { pathname, search } = location;
+      const path = pathname.replace(/^\/[^\/]+/, `/${lang}`);
+      history.push(path + search);
+    }
   };
 }
 

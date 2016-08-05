@@ -1,6 +1,7 @@
 "use strict";
 
 import React, { PropTypes } from "react";
+import Helmet from "react-helmet";
 
 import "reset.css";
 import "normalize.css";
@@ -56,6 +57,12 @@ export default class Application extends React.Component {
     const { children, style } = this.props;
     return (
       <div className={style.root}>
+        <Helmet
+          meta={[{
+            "http-equiv": "content-type",
+            content: "text/html; charset=utf-8"
+          }]}
+        />
         <div className={style.content}>
           { this.renderHelp() }
           { this.renderLangs() }

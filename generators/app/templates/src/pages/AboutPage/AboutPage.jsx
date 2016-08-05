@@ -27,7 +27,7 @@ export default class AboutPage extends React.Component {
   }
   render() {
     const { children, style } = this.props;
-    const { __ } = this.context;
+    const { __, language } = this.context;
     const className = style.root +
       (this.props.className ? ` ${this.props.className}` : "");
     return (
@@ -38,7 +38,7 @@ export default class AboutPage extends React.Component {
             { property: "og:title", content: __("About page") }
           ]}
         />
-        <Link className={style.link} to={""}>
+        <Link className={style.link} to={`/${language}`}>
           {__("Main page")}
         </Link>
         <ReactMarkdown className={style.content} source={this.getMD()} />

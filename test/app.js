@@ -48,7 +48,7 @@ describe("generator-wrr:app", ()=> {
 
       "src/vars.css",
       "src/client.jsx",
-      "src/static.jsx",
+
       "src/routes.js",
       "src/localization.js",
 
@@ -79,6 +79,10 @@ describe("generator-wrr:app", ()=> {
       "src/pages/IndexPage/IndexPage.Hello.jsx",
       "src/pages/IndexPage/throne.jpg",
 
+      "src/pages/NotfoundPage/NotfoundPage.css",
+      "src/pages/NotfoundPage/NotfoundPage.jsx",
+      "src/pages/NotfoundPage/index.js",
+
       "src/pages/EntryPage/EntryPage.css",
       "src/pages/EntryPage/EntryPage.jsx",
       "src/pages/EntryPage/index.js",
@@ -87,7 +91,12 @@ describe("generator-wrr:app", ()=> {
       "src/rest/user.js",
       "src/rest/entries.js",
       "src/rest/entry.js",
-      "src/utils/cookie.js"
+      "src/utils/cookie.js",
+
+      "generator.js",
+      "generator/index.jsx",
+      "generator/route2Urls.js",
+      "generator/writer.jsx",
     ]);
   });
 });

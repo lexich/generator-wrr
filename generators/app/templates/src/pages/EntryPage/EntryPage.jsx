@@ -10,17 +10,19 @@ export default class EntryPage extends React.Component {
     className: PropTypes.string,
     style: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
-    body: PropTypes.string.isRequired
+    body: PropTypes.string.isRequired,
+    children: PropTypes.element
   };
   static defaultProps = {
     style: styleCSS
   };
   static contextTypes = {
-    __: PropTypes.func
+    __: PropTypes.func,
+    language: PropTypes.string
   };
   render() {
-    const { style, title, body } = this.props;
-    const { __ } = this.context;
+    const { style, title, body, children } = this.props;
+    const { __, language } = this.context;
     const className = style.root +
       (this.props.className ? ` ${this.props.className}` : "");
     return (
@@ -31,13 +33,14 @@ export default class EntryPage extends React.Component {
             { property: "og:title", content: __("Entry: %1", title) }
           ]}
         />
-        <Link className={style.home} to={"/"}>
+        <Link className={style.home} to={`/${language}`}>
           {__("Main page")}
         </Link>
         <h1>{ title }</h1>
         <p>
           { body }
         </p>
+        { children }
       </div>
     );
   }

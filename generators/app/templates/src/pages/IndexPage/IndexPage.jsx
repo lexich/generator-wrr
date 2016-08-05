@@ -28,17 +28,18 @@ export default class IndexPage extends React.Component {
     style: styleCSS
   };
   static contextTypes = {
-    __: PropTypes.func
+    __: PropTypes.func,
+    language: PropTypes.string
   };
   render() {
     const {
       user: { name },
       score, style, increment, decrement, links
     } = this.props;
-    const { __ } = this.context;
+    const { __, language } = this.context;
     const Links = links.map(({ title, name })=> (
       <li key={name} >
-        <Link className={style.entry} to={`/entry/${name}`}>
+        <Link className={style.entry} to={`/${language}/entry/${name}`}>
           { title }
         </Link>
       </li>));
@@ -66,7 +67,7 @@ export default class IndexPage extends React.Component {
           <button onClick={decrement}>-</button>
         </div>
         <br />
-        <Link className={style.aboutpage} to={"about"}>
+        <Link className={style.aboutpage} to={`/${language}/about`}>
           {__("About page")}
         </Link>
         <ul className={style.entry_list} >
