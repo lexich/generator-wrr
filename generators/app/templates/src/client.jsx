@@ -21,15 +21,26 @@ import "isomorphic-fetch";
 
 // localization
 import initI18n from "react-i18n-universal/lib/redux";
-import { getCookie, setCookie } from "./utils/cookie";
+import jsCookie from "js-cookie";
 import locales from "./localization";
+
+const systemLang =
+  window.navigator.userLanguage ||
+  window.navigator.language ||
+  "en-US";
+
+const locale =
+  jsCookie.get("language") ||
+  (/^([^-]+)/.exec(systemLang) && RegExp.$1);
+
+const defaultLocale = locales[locale] ? locale : Object.keys(locales)[0];
 
 const i18n = initI18n({
   reducerName: "i18n",
   locales,
-  defaultLocale: getCookie("language") || "en",
+  defaultLocale,
   cb(locale) {
-    setCookie("language", locale);
+    jsCookie.set("language", locale, { path: "/" });
   }
 });
 

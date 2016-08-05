@@ -91,7 +91,7 @@ describe("generator-wrr:app", ()=> {
       "src/rest/user.js",
       "src/rest/entries.js",
       "src/rest/entry.js",
-      "src/utils/cookie.js",
+      "src/utils/.gitkeep",
 
       "generator.js",
       "generator/index.jsx",
