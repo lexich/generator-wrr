@@ -47,6 +47,7 @@ module.exports = yeoman.Base.extend({
 
       this.props.componentName = this.props.componentNameBase +
         (typeComponent === "pages" ? "Page" : "");
+      this.props.i18n = this.config.get("i18n");
       done();
     }.bind(this));
   },

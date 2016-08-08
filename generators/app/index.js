@@ -20,10 +20,17 @@ module.exports = yeoman.Base.extend({
       name:     "remotehost",
       message:  "Input remote host",
       default:  "http://locahost:3000"
+    }, {
+      type:     "confirm",
+      name:     "i18n",
+      message:  "Enable internationalization?",
+      default:  true,
+      store:    true
     }];
 
     this.prompt(prompts, function (props) {
       this.props = props;
+      this.config.set("i18n", props.i18n);
       done();
     }.bind(this));
   },
