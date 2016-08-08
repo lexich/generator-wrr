@@ -58,7 +58,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath("scripts"),
       this.destinationPath("scripts")
     );
-
+    this.directory(
+      this.templatePath("_storybook"),
+      this.destinationPath(".storybook")
+    );
     this.fs.copy(
       this.templatePath("logo.png"),
       this.destinationPath("logo.png")

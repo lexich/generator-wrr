@@ -61,22 +61,27 @@ module.exports = yeoman.Base.extend({
       this.destinationPath(libpath.join(dir, componentName + ".css"))
     );
 
-    const cpath = typeComponent === "pages" ? "page.jsx" :
-                  typeComponent === "components" ? "component.jsx" : "";
-    if (cpath) {
+    if (typeComponent === "pages") {
       this.copy(
-        this.templatePath(cpath),
+        this.templatePath("page.jsx"),
         this.destinationPath(libpath.join(dir, componentName + ".jsx"))
       );
-    }
-
-
-    const tpath = typeComponent === "pages" ? "page.ejs" :
-                  typeComponent === "components" ? "component.ejs" : "";
-    if (tpath) {
       this.copy(
-        this.templatePath(tpath),
+        this.templatePath("page.ejs"),
         this.destinationPath(libpath.join(dir, "index.js"))
+      );
+    } else if (typeComponent === "components") {
+      this.copy(
+        this.templatePath("component.jsx"),
+        this.destinationPath(libpath.join(dir, componentName + ".jsx"))
+      );
+      this.copy(
+        this.templatePath("component.ejs"),
+        this.destinationPath(libpath.join(dir, "index.js"))
+      );
+      this.copy(
+        this.templatePath("component_story.jsx"),
+        this.destinationPath(libpath.join(dir, componentName + "_story.jsx"))
       );
     }
   }

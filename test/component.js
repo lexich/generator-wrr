@@ -19,6 +19,7 @@ describe("generator-wrr:component", function () {
       assert.file([
         "src/components/TestComponent/TestComponent.jsx",
         "src/components/TestComponent/TestComponent.css",
+        "src/components/TestComponent/TestComponent_story.jsx",
         "src/components/TestComponent/index.js"
       ]);
     });
@@ -37,6 +38,9 @@ describe("generator-wrr:component", function () {
         "src/pages/TestComponentPage/TestComponentPage.jsx",
         "src/pages/TestComponentPage/TestComponentPage.css",
         "src/pages/TestComponentPage/index.js"
+      ]);
+      assert.noFile([
+        "src/components/TestComponent/TestComponentPage_story.jsx",
       ]);
       assert.fileContent(
         "src/pages/TestComponentPage/TestComponentPage.jsx",
@@ -81,8 +85,10 @@ describe("generator-wrr:component", function () {
       assert.file([
         "src/components/TestComponent/TestComponent.jsx",
         "src/components/TestComponent/TestComponent.css",
+        "src/components/TestComponent/TestComponent_story.jsx",
         "src/components/TestComponent/index.js"
       ]);
+
       assert.fileContent(
         "src/components/TestComponent/TestComponent.jsx",
         "export default class TestComponent"

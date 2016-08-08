@@ -4,7 +4,9 @@
     "start": "npm run server",
     "server": "NODE_ENV=develop node_modules/.bin/webpack-dev-server --process --hot --content-base public",
     "build-proxy": "npm run build && node ./scripts/proxy-server.js",
-    "build-static": "rm -rf build && npm run build && node_modules/.bin/webpack --config static.webpack.config.js && node ./build/static.bundle.js && node ./scripts/proxy-server.js"
+    "build-static": "rm -rf build && npm run build && node_modules/.bin/webpack --config static.webpack.config.js && node ./build/static.bundle.js && node ./scripts/proxy-server.js",
+    "storybook": "node_modules/.bin/start-storybook -p 9999",
+    "storybook-build": "node_modules/.bin/build-storybook"
   },
   "dependencies": {
     "font-awesome": "4.6.3",
@@ -30,6 +32,7 @@
     "wrr-applystyle":"lexich/wrr-applystyle#0.0.2"
   },
   "devDependencies": {
+    "@kadira/storybook": "2.2.0",
     "autoprefixer": "6.3.7",
     "babel-loader": "6.2.4",
     "chai": "3.5.0",

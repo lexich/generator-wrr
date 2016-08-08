@@ -97,6 +97,9 @@ describe("generator-wrr:app", ()=> {
       "generator/index.jsx",
       "generator/route2Urls.js",
       "generator/writer.jsx",
+
+      ".storybook/config.js",
+      ".storybook/webpack.config.js"
     ]);
   });
 });
