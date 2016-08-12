@@ -14,7 +14,7 @@ export default class <%= props.componentName %> extends React.Component {
     style: styleCSS
   };
   <% if (props.i18n) { %>static contextTypes = {
-    __: PropTypes.func.
+    __: PropTypes.func,
     language: PropTypes.string
   };<% } %>
   render() {
