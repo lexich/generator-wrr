@@ -6,6 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
+const DashboardPlugin = require("webpack-dashboard/plugin");
 const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 // postcss
@@ -115,6 +116,7 @@ module.exports = {
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(NODE_ENV)
     }),
+    new DashboardPlugin()
   ].concat(plugins).concat(
     new ManifestPlugin({
       fileName: "manifest.json"
