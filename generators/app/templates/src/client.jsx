@@ -65,7 +65,7 @@ import { createDevTools, persistState } from "redux-devtools";
 import LogMonitor from "redux-devtools-log-monitor";
 import DockMonitor from "redux-devtools-dock-monitor";
 
-if (DEBUG) {
+if (DEBUG && !window.devToolsExtension) {
   DevTools = createDevTools(
     <DockMonitor
       defaultIsVisible={false}
@@ -96,7 +96,7 @@ if (DEBUG) {
     return (matches && matches.length > 0) ? matches[1] : null;
   };
   midleware = midleware.concat(
-    DevTools.instrument(),
+    window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),,
     persistState(getDebugSessionKey())
   );
 }

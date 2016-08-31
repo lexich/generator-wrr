@@ -6,8 +6,9 @@
   "About page": "О проекте",
   "Score": "Счет",
   "Main page": "Главная страница",
-  "Press <em>ctrl+h</em> to show redux debug panel and <em>ctrl+q</em> to change it's position.":
-    "Нажмите <em>ctrl+h</em> для показа  redux debug panel и <em>ctrl+q</em> для изменения его позиционирования.",
+  "Press <em>ctrl+h</em> to show redux debug panel and <em>ctrl+q</em> to change it's position or install":
+  "Нажмите <em>ctrl+h</em> для показа  redux debug panel и <em>ctrl+q</em> для изменения его позиционирования или установите",
+  "You can debug redux app with": "Вы можете отладить ваще redux приложение c",
   "Entry: %1": "Запись: %1",
   "Go to main page": "Перейти на главную страницу",
   "Page not found": "Страница не найдена"
