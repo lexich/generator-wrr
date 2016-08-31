@@ -73,6 +73,8 @@ if (NODE_ENV === "production") {
       })
     ]);
   }
+} else {
+  plugins = [new DashboardPlugin()].concat(plugins);
 }
 
 
@@ -115,8 +117,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(NODE_ENV)
-    }),
-    new DashboardPlugin()
+    })
   ].concat(plugins).concat(
     new ManifestPlugin({
       fileName: "manifest.json"

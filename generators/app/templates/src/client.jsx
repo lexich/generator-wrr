@@ -96,7 +96,7 @@ if (DEBUG) {
     return (matches && matches.length > 0) ? matches[1] : null;
   };
   midleware = midleware.concat(
-    window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),,
+    window.devToolsExtension ? window.devToolsExtension() : DevTools.instrument(),
     persistState(getDebugSessionKey())
   );
 }
