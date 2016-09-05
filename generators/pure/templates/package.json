@@ -32,8 +32,8 @@
     "eslint-config-airbnb": "10.0.1",
     "eslint-plugin-react": "6.2.0",
     "eslint-plugin-import": "1.14.0",
-    "eslint-plugin-jsx-a11y": "2.2.0",
-    "husky": "0.11.6",
+    "eslint-plugin-jsx-a11y": "2.2.1",
+    "husky": "0.11.7",
     "stylelint": "7.2.0",
     "stylelint-config-suitcss": "8.0.0"
   }
