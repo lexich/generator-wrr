@@ -53,7 +53,7 @@ export default class Application extends React.Component {
             __.html("Press <em>ctrl+h</em> to show redux debug panel and <em>ctrl+q</em> to change it's position or install") :
             __("You can debug redux app with")
           }
-          &nbsp;<a href="http://zalmoxisus.github.io/redux-devtools-extension/" target="_blank">redux-devtools-extension</a>
+          &nbsp;<a href="http://zalmoxisus.github.io/redux-devtools-extension/" target="_blank" rel="noopener noreferrer">redux-devtools-extension</a>
         </p>
       );
     }

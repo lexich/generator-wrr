@@ -3,7 +3,7 @@ import { storiesOf } from "@kadira/storybook";
 import Hello from ".";
 
 storiesOf("Hello", module)
-  .add("Hello", () => (
+  .add("Hello", ()=> (
     <Hello />
   ))
   .add("Hello with src", ()=> (
