@@ -79,6 +79,7 @@
     "moduleNameMapper": {
       "^.+\\.(css)$": "<rootDir>/.jeststuff/styleMock.js",
       "^.+\\.(gif|ttf|eot|svg|jpg|jpeg|png)$": "<rootDir>/.jeststuff/fileMock.js"
-    }
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.jsx?$"
   }
 }

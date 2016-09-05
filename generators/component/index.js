@@ -84,6 +84,10 @@ module.exports = yeoman.Base.extend({
         this.templatePath("component_story.jsx"),
         this.destinationPath(libpath.join(dir, componentName + "_story.jsx"))
       );
+      this.copy(
+        this.templatePath("component.spec.ejs"),
+        this.destinationPath(libpath.join(dir, "__tests__", componentName + ".spec.jsx"))
+      );
     }
   }
 });

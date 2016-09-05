@@ -1,0 +1,13 @@
+/* globals describe, it, expect */
+import renderer from "react-test-renderer";
+import React from "react";
+import <%= props.componentName %> from "../";
+
+describe("<%= props.componentName %> component", ()=> {
+  it("default args", ()=> {
+    const component = renderer.create(
+      <<%= props.componentName %> />
+    );
+    expect(component).toMatchSnapshot();
+  });
+});

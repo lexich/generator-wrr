@@ -20,6 +20,7 @@ describe("generator-wrr:component", function () {
         "src/components/TestComponent/TestComponent.jsx",
         "src/components/TestComponent/TestComponent.css",
         "src/components/TestComponent/TestComponent_story.jsx",
+        "src/components/TestComponent/__tests__/TestComponent.spec.jsx",
         "src/components/TestComponent/index.js"
       ]);
     });
@@ -86,6 +87,7 @@ describe("generator-wrr:component", function () {
         "src/components/TestComponent/TestComponent.jsx",
         "src/components/TestComponent/TestComponent.css",
         "src/components/TestComponent/TestComponent_story.jsx",
+        "src/components/TestComponent/__tests__/TestComponent.spec.jsx",
         "src/components/TestComponent/index.js"
       ]);
 
