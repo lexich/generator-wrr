@@ -7,9 +7,8 @@
   "license": "MIT",
   "scripts": {
     "test": "npm run eslint && npm run stylelint",
-    "stylelint": "node_modules/.bin/stylelint src/**/*.css",
-    "csscomb": "node_modules/.bin/csscomb src/**/*.css",
-    "eslint": "node_modules/.bin/eslint *.js src/*.js src/*.jsx src/**/*.js src/**/*.jsx",
+    "stylelint": "node_modules/.bin/stylelint src/{,**}/*.css",
+    "eslint": "node_modules/.bin/eslint *.js src/{,**}/*.js src/{,**}/*.jsx",
     "precommit": "npm test",
     "prepush": "npm test",
     "postmerge": "npm install"

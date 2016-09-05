@@ -1,0 +1,19 @@
+exports[`Hello component check src args 1`] = `
+<span
+  className="root">
+  <img
+    className="image"
+    role="presentation"
+    src="best-seal.jpg" />
+</span>
+`;
+
+exports[`Hello component default args 1`] = `
+<span
+  className="root">
+  <img
+    className="image"
+    role="presentation"
+    src="filepath.mock" />
+</span>
+`;

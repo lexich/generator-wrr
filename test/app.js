@@ -99,7 +99,11 @@ describe("generator-wrr:app", ()=> {
       "generator/writer.jsx",
 
       ".storybook/config.js",
-      ".storybook/webpack.config.js"
+      ".storybook/webpack.config.js",
+
+
+      ".jeststuff/fileMock.js",
+      ".jeststuff/styleMock.js",
     ]);
   });
 });

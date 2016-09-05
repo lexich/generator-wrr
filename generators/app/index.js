@@ -69,6 +69,10 @@ module.exports = yeoman.Base.extend({
       this.templatePath("_storybook"),
       this.destinationPath(".storybook")
     );
+    this.directory(
+      this.templatePath("_jeststuff"),
+      this.destinationPath(".jeststuff")
+    );
     this.fs.copy(
       this.templatePath("logo.png"),
       this.destinationPath("logo.png")
@@ -114,7 +118,13 @@ module.exports = yeoman.Base.extend({
           JSON.parse(this.fs.read(pathPkgDest)),
           JSON.parse(this.fs.read(pathPkgTmpl))
         );
-
+        if (json.scripts && json.scripts.jest) {
+          if (json.scripts.test) {
+            json.scripts.test += " && npm run jest";
+          } else {
+            json.scripts.test = "npm run jest";
+          }
+        }
         this.fs.write(
           pathPkgDest,
           JSON.stringify(json, null, 2)
