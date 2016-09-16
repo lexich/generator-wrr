@@ -14,6 +14,7 @@ class Generator extends SiteGenerator {
     }
   }
   matchUrl(url, locale) {
+    /* eslint class-methods-use-this: 0 */
     return url.replace(":lang", locale);
   }
   writeFile(url, html, origUrl) {

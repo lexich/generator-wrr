@@ -1,5 +1,5 @@
 "use strict";
-/* eslint react/jsx-filename-extension: 0 */
+/* eslint react/jsx-filename-extension: 0, react/no-danger: 0 */
 
 import React from "react";
 import ReactDOM from "react-dom/server";
