@@ -33,6 +33,7 @@
     "wrr-applystyle":"lexich/wrr-applystyle#0.0.2"
   },
   "devDependencies": {
+    "@kadira/react-storybook-addon-info": "3.2.1",
     "@kadira/storybook": "2.15.1",
     "autoprefixer": "6.4.1",
     "babel-loader": "6.2.5",

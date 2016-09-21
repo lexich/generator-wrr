@@ -3,9 +3,9 @@ import { storiesOf } from "@kadira/storybook";
 import Hello from ".";
 
 storiesOf("Hello", module)
-  .add("Hello", ()=> (
+  .addWithInfo("Hello", ()=> (
     <Hello />
   ))
-  .add("Hello with src", ()=> (
+  .addWithInfo("Hello with src", ()=> (
     <Hello src={"http://placehold.it/350x150"} />
   ));
