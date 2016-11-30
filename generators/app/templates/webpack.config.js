@@ -1,4 +1,5 @@
 "use strict";
+
 /* eslint import/no-extraneous-dependencies: 0 */
 const webpack = require("webpack");
 const path = require("path");

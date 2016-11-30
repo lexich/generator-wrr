@@ -1,4 +1,5 @@
 "use strict";
+
 /* global describe, it, before */
 /* eslint prefer-arrow-callback: 0, import/no-extraneous-dependencies: 0*/
 

@@ -1,8 +1,10 @@
 "use strict";
-import SiteGenerator from "./generator/index.jsx";
-import locales from "./src/localization";
+
 import path from "path";
 import uniq from "lodash/uniq";
+
+import SiteGenerator from "./generator/index.jsx";
+import locales from "./src/localization";
 
 class Generator extends SiteGenerator {
   onProcessPath(filePath) {

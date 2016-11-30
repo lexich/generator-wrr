@@ -1,13 +1,14 @@
 "use strict";
 
-import rest from "./rest";
+import { actionUpdate } from "react-i18n-universal/lib/redux";
+
 import Application from "pages/Application";
 import IndexPage from "pages/IndexPage";
 import AboutPage from "pages/AboutPage";
 import EntryPage from "pages/EntryPage";
 import NotfoundPage from "pages/NotfoundPage";
 
-import { actionUpdate } from "react-i18n-universal/lib/redux";
+import rest from "./rest";
 
 function indexRoute({ dispatch }) {
   return {

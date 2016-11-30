@@ -1,6 +1,10 @@
+"use strict";
+
+/* eslint no-useless-escape: 0 */
+
 import { connect } from "react-redux";
-import Application from "./Application";
 import { browserHistory as history } from "react-router";
+import Application from "./Application";
 
 function mapStateToProps(state) {
   return {

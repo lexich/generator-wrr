@@ -1,4 +1,6 @@
 "use strict";
+
+/* eslint import/first: 0 */
 // Mode: <%= process.env.NODE_ENV %>
 
 const DEBUG = true && process.env.NODE_ENV === "develop";
@@ -118,7 +120,9 @@ render(
   <Provider store={store}>
     <i18n.I18N>
       <div className="ApplicationRoot">
-        <Router key="ta-app" history={history} children={childRoutes} />
+        <Router key="ta-app" history={history}>
+          {childRoutes}
+        </Router>
         {DevTools ? <DevTools /> : null}
       </div>
     </i18n.I18N>

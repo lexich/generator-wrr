@@ -1,4 +1,5 @@
 "use strict";
+
 /* eslint prefer-template: 0 prefer-arrow-callback: 0 */
 const yeoman = require("yeoman-generator");
 const chalk = require("chalk");

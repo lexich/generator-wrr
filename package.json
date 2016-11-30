@@ -2,11 +2,11 @@
   "name": "generator-wrr",
   "version": "0.0.0",
   "description": "Webpack React Redux generator",
-  "homepage": "",
+  "homepage": "https://github.com/lexich/generator-wrr",
   "author": {
     "name": "Efremov Alexey",
     "email": "lexich121@gmail.com",
-    "url": "lexich.ru"
+    "url": "https://lexich.ru"
   },
   "files": [
     "generators"
@@ -17,20 +17,20 @@
   ],
   "dependencies": {
     "chalk": "1.1.3",
-    "lodash": "4.14.1",
+    "lodash": "4.17.2",
     "yeoman-generator": "0.22.3",
-    "yosay": "1.2.0"
+    "yosay": "1.2.1"
   },
   "devDependencies": {
-    "babel-eslint": "6.1.2",
-    "eslint-config-airbnb": "10.0.0",
-    "eslint-plugin-import": "1.12.0",
-    "eslint-plugin-jsx-a11y": "2.0.1",
-    "eslint-plugin-react": "6.0.0",
+    "babel-eslint": "7.1.1",
+    "eslint-config-airbnb": "13.0.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "2.2.3",
+    "eslint-plugin-react": "6.7.1",
     "gulp": "3.9.1",
     "gulp-eslint": "3.0.1",
-    "gulp-exclude-gitignore": "1.0.0",
-    "gulp-mocha": "3.0.0",
+    "gulp-exclude-gitignore": "1.1.1",
+    "gulp-mocha": "3.0.1",
     "gulp-nsp": "2.4.2",
     "gulp-plumber": "1.1.0",
     "yeoman-assert": "2.2.1",

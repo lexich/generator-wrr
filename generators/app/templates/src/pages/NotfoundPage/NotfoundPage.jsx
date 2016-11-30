@@ -1,9 +1,10 @@
 "use strict";
 
 import React, { PropTypes } from "react";
-import styleCSS from "./NotfoundPage.css";
 import Helmet from "react-helmet";
 import { Link } from "react-router";
+
+import styleCSS from "./NotfoundPage.css";
 
 export default class NotfoundPage extends React.Component {
   static propTypes = {

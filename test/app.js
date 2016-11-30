@@ -1,4 +1,5 @@
 "use strict";
+
 /* global describe, it, before */
 /* eslint import/no-extraneous-dependencies: 0 */
 const path = require("path");
