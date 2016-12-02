@@ -9,12 +9,22 @@ export default class Hello extends React.Component {
   static propTypes = {
     className: PropTypes.string,
     style: PropTypes.object.isRequired,
-    src: PropTypes.string.isRequired
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired
   };
   static defaultProps = {
     style: styleCSS,
-    src: imageSeaLion
+    src: imageSeaLion,
+    alt: "image"
   };
+
+  componentDidMount() {
+    const { img } = this.refs;
+    if (img) {
+      img.setAttribute('alt', this.props.alt);
+    }
+  }
+
   render() {
     const { style, src } = this.props;
 
@@ -23,7 +33,7 @@ export default class Hello extends React.Component {
 
     return (
       <span className={className}>
-        <img className={style.image} src={src} role="presentation" />
+        <img className={style.image} src={src} role="presentation" ref="img" />
       </span>
     );
   }
